@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -32,6 +34,9 @@ import javax.swing.border.CompoundBorder;
 public class Interfaz extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+
+	
 	private JPanel PanelPreguntas;
 	public JButton Opcion_A;
 	public JButton Opcion_B;
@@ -97,6 +102,15 @@ public class Interfaz extends JFrame {
 	public JButton btnNewButton;
 	public JLabel FotoMenuPrincipal;
 	
+	
+	private CardLayout cardLayout;
+	private JPanel contenedor;
+
+	private PanelInicio panelInicio;
+	private PanelPreguntas panelPreguntas;
+	private PanelRanking panelRanking;
+	
+    
 	/**
 	 * Launch the application.
 	 */
@@ -116,14 +130,22 @@ public class Interfaz extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+
+	
 	public Interfaz() {
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 400);
 		PanelPreguntas = new JPanel();
 		PanelPreguntas.setBackground(new Color(253, 247, 130));
 		PanelPreguntas.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(PanelPreguntas);
+		setContentPane(contenedor);
 		PanelPreguntas.setLayout(null);
+		
+		
+
 		
 		Opcion_A = new JButton("A) Honkai");
 		Opcion_A.setBackground(new Color(160, 254, 219));
@@ -151,7 +173,7 @@ public class Interfaz extends JFrame {
 		PanelUsuario.setLayout(null);
 		
 		PanelInformacion = new JPanel();
-		PanelInformacion.setBounds(-463, -328, 506, 361);
+		PanelInformacion.setBounds(0, 0, 506, 361);
 		PanelUsuario.add(PanelInformacion);
 		PanelInformacion.setBackground(new Color(253, 247, 130));
 		PanelInformacion.setLayout(null);
@@ -160,7 +182,7 @@ public class Interfaz extends JFrame {
 		PanelRanking.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelRanking.setForeground(new Color(253, 247, 130));
 		PanelRanking.setBackground(new Color(253, 247, 130));
-		PanelRanking.setBounds(-475, 278, 506, 361);
+		PanelRanking.setBounds(0, 0, 506, 361);
 		PanelInformacion.add(PanelRanking);
 		PanelRanking.setLayout(null);
 		
