@@ -42,17 +42,17 @@ public class Interfaz extends JFrame {
 	public JButton ComodinProteccion;
 	public JButton ComodinLlamada;
 	public JButton ComodinDescartarOpcion;
-	public JButton Salir;
-	public JButton VerDinero;
+	public JButton SalirPreguntas;
+	public JButton DineroPreguntas;
 	public JPanel PanelInicio;
 	public JButton NuevaPartida;
 	public JButton InformacionJuego;
 	public JButton SalirJuego;
 	public JLabel FotoPanelUsuario;
-	public JPanel PanelUsuario;
-	public JTextField IntroducirNombre;
+	public JPanel PanelRegistrarse;
+	public JTextField RegistrarseUsuario;
 	public JFormattedTextField CuadrotextoNombre;
-	public JLabel ImagenUser;
+	public JLabel ImagenRegistrar;
 	public JPanel PanelInformacion;
 	public JTextField NombreDelJugador;
 	public JButton Comodin1;
@@ -75,27 +75,49 @@ public class Interfaz extends JFrame {
 	public JTextField top3;
 	public JTextField top4;
 	public JTextField top5;
-	public JButton salir;
-	public JTextField CuadrotextoApellidos;
+	public JButton SalirInformacion;
+	public JTextField CuadrotextoContraseña;
 	public JTextField CuadrotextoDNI;
 	public JTextPane NombreUsuario;
 	public JTextPane DniUsuario;
-	public JTextPane Contraseña;
-	public JTextField NombreUser;
-	public JTextArea Usuariotexto;
-	public JLabel lblNewLabel;
-	public JLabel lblNewLabel_2;
+	public JTextPane ContraseñaUsuario;
+	public JTextField UsuarioInformacion;
+	public JTextArea NombreInformacion;
+	public JLabel ImagenRanking;
+	public JLabel RectanguloRanking;
 	public JTextArea textoUsuario;
 	public JLabel FondoAzul1;
 	public JLabel FondoAzul2;
-	public JLabel lblNewLabel_6;
-	public JLabel FondoAzul;
-	public JButton Salir2;
-	public JButton BotonEntrar;
-	public JLabel FondoAzull;
+	public JLabel FotoRanking;
+	public JLabel FondoUsuario;
+	public JButton SalirUsuario;
+	public JButton EntrarUsuario;
+	public JLabel FondoInicio;
 	public JLabel PreguntaPng;
-	public JButton btnNewButton;
+	public JButton ExplicacionUsuario;
 	public JLabel FotoMenuPrincipal;
+	public JLabel RectanguloPreguntas2;
+	public JTextField usuarioText;
+	public JButton InformacionPreguntas;
+	public JLabel RectanguloPreguntas;
+	public JTextField NivelPreguntas;
+	public JTextField txtyaTieneUna;
+	public JButton btnNewButton;
+	public JPanel PanelIniciarSesion;
+	public JLabel lblNewLabel;
+	public JTextField IniciarSesion;
+	public JTextField NombreIniciarSesion;
+	public JTextField ContraseñaIniciarSesion;
+	public JTextField NombreRellenar;
+	public JTextField ContraseñaRellenar;
+	public JLabel lblNewLabel_1;
+	public JPanel Panelinfo;
+	public JLabel InfoFoto;
+	public JLabel fondoInfo;
+	public JPanel PanelElegir;
+	public JTextField IniciarSesionCuenta;
+	public JTextField RegistrarUnaCuenta;
+	public JLabel FondoCrearCuenta;
 	
 	/**
 	 * Launch the application.
@@ -119,9 +141,10 @@ public class Interfaz extends JFrame {
 	public Interfaz() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 400);
-		PanelPreguntas = new JPanel();
+		PanelPreguntas = 
+				new JPanel();
 		PanelPreguntas.setBackground(new Color(253, 247, 130));
-		PanelPreguntas.setBorder(new EmptyBorder(5, 5, 5, 5));
+		PanelPreguntas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		setContentPane(PanelPreguntas);
 		PanelPreguntas.setLayout(null);
 		
@@ -133,8 +156,9 @@ public class Interfaz extends JFrame {
 		});
 		
 		PanelInicio = new JPanel();
+		PanelInicio.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelInicio.setBackground(new Color(253, 247, 130));
-		PanelInicio.setBounds(0, 0, 506, 361);
+		PanelInicio.setBounds(0, -1, 506, 361);
 		PanelPreguntas.add(PanelInicio);
 		PanelInicio.setLayout(null);
 		
@@ -144,15 +168,17 @@ public class Interfaz extends JFrame {
 			}
 		});
 		
-		PanelUsuario = new JPanel();
-		PanelUsuario.setBounds(0, 0, 506, 361);
-		PanelInicio.add(PanelUsuario);
-		PanelUsuario.setBackground(new Color(253, 247, 130));
-		PanelUsuario.setLayout(null);
+		PanelRegistrarse = new JPanel();
+		PanelRegistrarse.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
+		PanelRegistrarse.setBounds(0, 0, 506, 361);
+		PanelInicio.add(PanelRegistrarse);
+		PanelRegistrarse.setBackground(new Color(253, 247, 130));
+		PanelRegistrarse.setLayout(null);
 		
 		PanelInformacion = new JPanel();
-		PanelInformacion.setBounds(-463, -328, 506, 361);
-		PanelUsuario.add(PanelInformacion);
+		PanelInformacion.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
+		PanelInformacion.setBounds(0, 0, 506, 361);
+		PanelRegistrarse.add(PanelInformacion);
 		PanelInformacion.setBackground(new Color(253, 247, 130));
 		PanelInformacion.setLayout(null);
 		
@@ -160,67 +186,160 @@ public class Interfaz extends JFrame {
 		PanelRanking.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelRanking.setForeground(new Color(253, 247, 130));
 		PanelRanking.setBackground(new Color(253, 247, 130));
-		PanelRanking.setBounds(-475, 278, 506, 361);
+		PanelRanking.setBounds(0, 0, 506, 361);
 		PanelInformacion.add(PanelRanking);
 		PanelRanking.setLayout(null);
+		
+		PanelIniciarSesion = new JPanel();
+		PanelIniciarSesion.setBackground(new Color(253, 247, 130));
+		PanelIniciarSesion.setBounds(0, 0, 506, 361);
+		PanelRanking.add(PanelIniciarSesion);
+		PanelIniciarSesion.setLayout(null);
+		
+		Panelinfo = new JPanel();
+		Panelinfo.setBackground(new Color(253, 247, 130));
+		Panelinfo.setBounds(0, 0, 506, 361);
+		PanelIniciarSesion.add(Panelinfo);
+		Panelinfo.setLayout(null);
+		
+		PanelElegir = new JPanel();
+		PanelElegir.setBackground(new Color(253, 247, 130));
+		PanelElegir.setBounds(0, 0, 506, 361);
+		Panelinfo.add(PanelElegir);
+		PanelElegir.setLayout(null);
+		
+		IniciarSesionCuenta = new JTextField();
+		IniciarSesionCuenta.setHorizontalAlignment(SwingConstants.CENTER);
+		IniciarSesionCuenta.setText("Iniciar sesion en una cuenta");
+		IniciarSesionCuenta.setBounds(143, 89, 190, 55);
+		PanelElegir.add(IniciarSesionCuenta);
+		IniciarSesionCuenta.setColumns(10);
+		
+		RegistrarUnaCuenta = new JTextField();
+		RegistrarUnaCuenta.setHorizontalAlignment(SwingConstants.CENTER);
+		RegistrarUnaCuenta.setText("Registrar una cuenta nueva");
+		RegistrarUnaCuenta.setColumns(10);
+		RegistrarUnaCuenta.setBounds(143, 208, 190, 55);
+		PanelElegir.add(RegistrarUnaCuenta);
+		
+		FondoCrearCuenta = new JLabel("");
+		FondoCrearCuenta.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
+		FondoCrearCuenta.setBounds(0, 177, 506, 184);
+		PanelElegir.add(FondoCrearCuenta);
+		
+		InfoFoto = new JLabel("");
+		InfoFoto.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/info (1).png")));
+		InfoFoto.setBounds(298, 65, 147, 219);
+		Panelinfo.add(InfoFoto);
+		
+		fondoInfo = new JLabel("New label");
+		fondoInfo.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/Otrofondo.png")));
+		fondoInfo.setBounds(0, 0, 160, 361);
+		Panelinfo.add(fondoInfo);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/iniciarsesion (1).png")));
+		lblNewLabel.setBounds(154, 13, 180, 143);
+		PanelIniciarSesion.add(lblNewLabel);
+		
+		IniciarSesion = new JTextField();
+		IniciarSesion.setHorizontalAlignment(SwingConstants.CENTER);
+		IniciarSesion.setText("Iniciar Sesion");
+		IniciarSesion.setEditable(false);
+		IniciarSesion.setBounds(180, 191, 129, 37);
+		PanelIniciarSesion.add(IniciarSesion);
+		IniciarSesion.setColumns(10);
+		
+		NombreIniciarSesion = new JTextField();
+		NombreIniciarSesion.setText("Nombre");
+		NombreIniciarSesion.setBounds(141, 249, 86, 20);
+		PanelIniciarSesion.add(NombreIniciarSesion);
+		NombreIniciarSesion.setColumns(10);
+		
+		ContraseñaIniciarSesion = new JTextField();
+		ContraseñaIniciarSesion.setText("Contraseña");
+		ContraseñaIniciarSesion.setBounds(141, 296, 86, 20);
+		PanelIniciarSesion.add(ContraseñaIniciarSesion);
+		ContraseñaIniciarSesion.setColumns(10);
+		
+		NombreRellenar = new JTextField();
+		NombreRellenar.setBounds(260, 249, 86, 20);
+		PanelIniciarSesion.add(NombreRellenar);
+		NombreRellenar.setColumns(10);
+		
+		ContraseñaRellenar = new JTextField();
+		ContraseñaRellenar.setBounds(260, 296, 86, 20);
+		PanelIniciarSesion.add(ContraseñaRellenar);
+		ContraseñaRellenar.setColumns(10);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
+		lblNewLabel_1.setBounds(0, 167, 506, 204);
+		PanelIniciarSesion.add(lblNewLabel_1);
 		
 		top1 = new JTextField();
 		top1.setBackground(new Color(255, 255, 255));
 		top1.setBounds(93, 117, 219, 20);
 		PanelRanking.add(top1);
 		top1.setColumns(10);
+		top1.setVisible(false);
 		
 		top2 = new JTextField();
 		top2.setColumns(10);
 		top2.setBounds(93, 155, 219, 20);
 		PanelRanking.add(top2);
+		top2.setVisible(false);
 		
 		top3 = new JTextField();
 		top3.setColumns(10);
 		top3.setBounds(93, 193, 219, 20);
 		PanelRanking.add(top3);
+		top3.setVisible(false);
 		
 		top4 = new JTextField();
 		top4.setColumns(10);
 		top4.setBounds(93, 233, 219, 20);
 		PanelRanking.add(top4);
+		top4.setVisible(false);
 		
 		top5 = new JTextField();
 		top5.setColumns(10);
 		top5.setBounds(93, 272, 219, 20);
 		PanelRanking.add(top5);
+		top5.setVisible(false);
 		
-		salir = new JButton("");
-		salir.setBackground(new Color(0, 0, 64));
-		salir.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
-		salir.setBounds(10, 8, 35, 27);
-		PanelRanking.add(salir);
+		SalirInformacion = new JButton("");
+		SalirInformacion.setBackground(new Color(0, 0, 64));
+		SalirInformacion.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		SalirInformacion.setBounds(10, 8, 35, 27);
+		PanelRanking.add(SalirInformacion);
+		SalirInformacion.setVisible(false);
 		
-		NombreUser = new JTextField();
-		NombreUser.setBounds(410, 11, 86, 20);
-		PanelRanking.add(NombreUser);
-		NombreUser.setColumns(10);
+		UsuarioInformacion = new JTextField();
+		UsuarioInformacion.setBounds(410, 11, 86, 20);
+		PanelRanking.add(UsuarioInformacion);
+		UsuarioInformacion.setColumns(10);
 		
-		Usuariotexto = new JTextArea();
-		Usuariotexto.setText("Usuario:");
-		Usuariotexto.setEditable(false);
-		Usuariotexto.setBounds(327, 11, 73, 19);
-		PanelRanking.add(Usuariotexto);
+		NombreInformacion = new JTextArea();
+		NombreInformacion.setText("Usuario:");
+		NombreInformacion.setEditable(false);
+		NombreInformacion.setBounds(327, 11, 73, 19);
+		PanelRanking.add(NombreInformacion);
 		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/clasificacion_redimensionado.png")));
-		lblNewLabel.setBounds(0, 34, 329, 316);
-		PanelRanking.add(lblNewLabel);
+		ImagenRanking = new JLabel("");
+		ImagenRanking.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/clasificacion_redimensionado.png")));
+		ImagenRanking.setBounds(0, 34, 329, 316);
+		PanelRanking.add(ImagenRanking);
 		
-		lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/AzulMarino.png")));
-		lblNewLabel_2.setBounds(0, 0, 506, 41);
-		PanelRanking.add(lblNewLabel_2);
+		RectanguloRanking = new JLabel("");
+		RectanguloRanking.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/AzulMarino.png")));
+		RectanguloRanking.setBounds(0, 0, 506, 41);
+		PanelRanking.add(RectanguloRanking);
 		
-		lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/clasificacion_banner.png")));
-		lblNewLabel_6.setBounds(339, 86, 140, 235);
-		PanelRanking.add(lblNewLabel_6);
+		FotoRanking = new JLabel("");
+		FotoRanking.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/clasificacion_banner.png")));
+		FotoRanking.setBounds(339, 86, 140, 235);
+		PanelRanking.add(FotoRanking);
 		
 		
 		NombreDelJugador = new JTextField();
@@ -234,12 +353,12 @@ public class Interfaz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Comodin1.setBounds(335, 10, 25, 24);
+		Comodin1.setBounds(308, 10, 25, 24);
 		PanelInformacion.add(Comodin1);
 		
 		Comodin2 = new JButton("");
 		Comodin2.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/llamada.png")));
-		Comodin2.setBounds(381, 10, 25, 24);
+		Comodin2.setBounds(353, 10, 25, 24);
 		PanelInformacion.add(Comodin2);
 		
 		Comodin3 = new JButton("");
@@ -248,13 +367,13 @@ public class Interfaz extends JFrame {
 			}
 		});
 		Comodin3.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/Eliminar.png")));
-		Comodin3.setBounds(427, 10, 25, 24);
+		Comodin3.setBounds(399, 10, 25, 24);
 		PanelInformacion.add(Comodin3);
 		
 		Salir1 = new JButton("");
 		Salir1.setForeground(new Color(0, 0, 64));
 		Salir1.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
-		Salir1.setBounds(471, 51, 25, 24);
+		Salir1.setBounds(444, 10, 25, 24);
 		PanelInformacion.add(Salir1);
 		
 		Premio10 = new JTextField();
@@ -342,70 +461,80 @@ public class Interfaz extends JFrame {
 		FondoAzul2.setBounds(189, 136, 202, 214);
 		PanelInformacion.add(FondoAzul2);
 		
-		IntroducirNombre = new JTextField();
-		IntroducirNombre.setEditable(false);
-		IntroducirNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		IntroducirNombre.setText("Registrar una cuenta ");
-		IntroducirNombre.setBounds(138, 170, 225, 35);
-		PanelUsuario.add(IntroducirNombre);
-		IntroducirNombre.setColumns(10);
+		RegistrarseUsuario = new JTextField();
+		RegistrarseUsuario.setEditable(false);
+		RegistrarseUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		RegistrarseUsuario.setText("Registrar una cuenta ");
+		RegistrarseUsuario.setBounds(138, 170, 225, 35);
+		PanelRegistrarse.add(RegistrarseUsuario);
+		RegistrarseUsuario.setColumns(10);
 		
 		CuadrotextoNombre =new JFormattedTextField();
-		CuadrotextoNombre.setBounds(251, 230, 98, 20);
-		PanelUsuario.add(CuadrotextoNombre);
+		CuadrotextoNombre.setBounds(251, 261, 98, 20);
+		PanelRegistrarse.add(CuadrotextoNombre);
 		
-		ImagenUser = new JLabel("New label");
-		ImagenUser.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/concursillo_logogrande.png")));
-		ImagenUser.setBounds(160, 21, 157, 95);
-		PanelUsuario.add(ImagenUser);
+		ImagenRegistrar = new JLabel("New label");
+		ImagenRegistrar.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/concursillo_logogrande.png")));
+		ImagenRegistrar.setBounds(160, 21, 157, 95);
+		PanelRegistrarse.add(ImagenRegistrar);
 		
-		CuadrotextoApellidos = new JTextField();
-		CuadrotextoApellidos.setBounds(251, 261, 96, 20);
-		PanelUsuario.add(CuadrotextoApellidos);
-		CuadrotextoApellidos.setColumns(10);
+		CuadrotextoContraseña = new JTextField();
+		CuadrotextoContraseña.setBounds(251, 292, 96, 20);
+		PanelRegistrarse.add(CuadrotextoContraseña);
+		CuadrotextoContraseña.setColumns(10);
 		
 		CuadrotextoDNI = new JTextField();
 		CuadrotextoDNI.setColumns(10);
-		CuadrotextoDNI.setBounds(251, 292, 96, 20);
-		PanelUsuario.add(CuadrotextoDNI);
+		CuadrotextoDNI.setBounds(251, 230, 96, 20);
+		PanelRegistrarse.add(CuadrotextoDNI);
 		
 		NombreUsuario = new JTextPane();
 		NombreUsuario.setText("Nombre");
 		NombreUsuario.setBounds(138, 261, 74, 20);
-		PanelUsuario.add(NombreUsuario);
+		PanelRegistrarse.add(NombreUsuario);
 		
 		DniUsuario = new JTextPane();
 		DniUsuario.setText("DNI");
 		DniUsuario.setBounds(138, 230, 74, 20);
-		PanelUsuario.add(DniUsuario);
+		PanelRegistrarse.add(DniUsuario);
 		
-		Contraseña = new JTextPane();
-		Contraseña.setText("Contraseña");
-		Contraseña.setBounds(138, 292, 74, 20);
-		PanelUsuario.add(Contraseña);
+		ContraseñaUsuario = new JTextPane();
+		ContraseñaUsuario.setText("Contraseña");
+		ContraseñaUsuario.setBounds(138, 292, 74, 20);
+		PanelRegistrarse.add(ContraseñaUsuario);
 		
-		Salir2 = new JButton("");
-		Salir2.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
-		Salir2.setBounds(10, 327, 25, 24);
-		PanelUsuario.add(Salir2);
+		SalirUsuario = new JButton("");
+		SalirUsuario.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		SalirUsuario.setBounds(10, 327, 25, 24);
+		PanelRegistrarse.add(SalirUsuario);
 		
-		BotonEntrar = new JButton("Entrar");
-		BotonEntrar.setBounds(198, 328, 89, 23);
-		PanelUsuario.add(BotonEntrar);
+		EntrarUsuario = new JButton("Entrar");
+		EntrarUsuario.setBounds(198, 328, 89, 23);
+		PanelRegistrarse.add(EntrarUsuario);
 		
-		btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/informacion_pequeno.png")));
-		btnNewButton.setBounds(471, 327, 25, 24);
-		PanelUsuario.add(btnNewButton);
+		ExplicacionUsuario = new JButton("");
+		ExplicacionUsuario.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/informacion_pequeno.png")));
+		ExplicacionUsuario.setBounds(471, 327, 25, 24);
+		PanelRegistrarse.add(ExplicacionUsuario);
 		
-		FondoAzul = new JLabel("");
-		FondoAzul.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
-		FondoAzul.setBounds(0, 148, 506, 213);
-		PanelUsuario.add(FondoAzul);
+		FondoUsuario = new JLabel("");
+		FondoUsuario.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
+		FondoUsuario.setBounds(0, 148, 506, 213);
+		PanelRegistrarse.add(FondoUsuario);
 		
-		//Quitar visibilidad Interfaz Inicio Sesion//
+		txtyaTieneUna = new JTextField();
+		txtyaTieneUna.setText("¿Ya tiene una cuenta?");
+		txtyaTieneUna.setBounds(367, 11, 129, 20);
+		PanelRegistrarse.add(txtyaTieneUna);
+		txtyaTieneUna.setColumns(10);
+		
+		btnNewButton = new JButton("Iniciar Sesión");
+		btnNewButton.setBounds(367, 42, 108, 23);
+		PanelRegistrarse.add(btnNewButton);
+		
+
 		CuadrotextoNombre.setVisible(false);
-		IntroducirNombre.setVisible(false);
+		RegistrarseUsuario.setVisible(false);
 		NuevaPartida.setBounds(5, 108, 150, 23);
 		PanelInicio.add(NuevaPartida);
 		
@@ -436,10 +565,10 @@ public class Interfaz extends JFrame {
 		FotoMenuPrincipal.setBounds(10, 11, 131, 86);
 		PanelInicio.add(FotoMenuPrincipal);
 		
-		FondoAzull = new JLabel("");
-		FondoAzull.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/Otrofondo.png")));
-		FondoAzull.setBounds(0, 0, 159, 361);
-		PanelInicio.add(FondoAzull);
+		FondoInicio = new JLabel("");
+		FondoInicio.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/Otrofondo.png")));
+		FondoInicio.setBounds(0, 0, 159, 361);
+		PanelInicio.add(FondoInicio);
 		Opcion_A.setBounds(41, 247, 175, 23);
 		PanelPreguntas.add(Opcion_A);
 		
@@ -450,7 +579,7 @@ public class Interfaz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Opcion_B.setBounds(290, 247, 175, 23);
+		Opcion_B.setBounds(247, 247, 175, 23);
 		PanelPreguntas.add(Opcion_B);
 		
 		Opcion_C = new JButton("C) Genshin");
@@ -464,21 +593,22 @@ public class Interfaz extends JFrame {
 		
 		Opcion_D = new JButton("D) Ninguno, es de fracasados");
 		Opcion_D.setBackground(new Color(160, 254, 219));
-		Opcion_D.setBounds(290, 281, 175, 23);
+		Opcion_D.setBounds(247, 281, 175, 23);
 		PanelPreguntas.add(Opcion_D);
 		
 		Pregunta = new JTextField();
+		Pregunta.setHorizontalAlignment(SwingConstants.CENTER);
 		Pregunta.setEditable(false);
 		Pregunta.setBackground(new Color(160, 254, 219));
 		Pregunta.setText("Si dabbido jugara un gacha por lo que sea cual jugaria");
-		Pregunta.setBounds(85, 205, 337, 31);
+		Pregunta.setBounds(60, 205, 337, 31);
 		PanelPreguntas.add(Pregunta);
 		Pregunta.setColumns(10);
 		
 		ImagenConcursillo = new JLabel("New label");
 		ImagenConcursillo.setBackground(new Color(0, 255, 0));
 		ImagenConcursillo.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/ConcursilloLogo.png")));
-		ImagenConcursillo.setBounds(208, 97, 85, 80);
+		ImagenConcursillo.setBounds(180, 101, 85, 80);
 		PanelPreguntas.add(ImagenConcursillo);
 		
 		ComodinProteccion = new JButton("");
@@ -496,15 +626,44 @@ public class Interfaz extends JFrame {
 		ComodinDescartarOpcion.setBounds(471, 11, 25, 24);
 		PanelPreguntas.add(ComodinDescartarOpcion);
 		
-		Salir = new JButton("");
-		Salir.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
-		Salir.setBounds(10, 11, 25, 24);
-		PanelPreguntas.add(Salir);
+		SalirPreguntas = new JButton("");
+		SalirPreguntas.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		SalirPreguntas.setBounds(10, 11, 25, 24);
+		PanelPreguntas.add(SalirPreguntas);
 		
-		VerDinero = new JButton("");
-		VerDinero.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/verDinero.png")));
-		VerDinero.setBounds(56, 11, 25, 24);
-		PanelPreguntas.add(VerDinero);
+		DineroPreguntas = new JButton("");
+		DineroPreguntas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		DineroPreguntas.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/verDinero.png")));
+		DineroPreguntas.setBounds(50, 11, 25, 24);
+		PanelPreguntas.add(DineroPreguntas);
+		
+		usuarioText = new JTextField();
+		usuarioText.setBounds(120, 15, 86, 20);
+		PanelPreguntas.add(usuarioText);
+		usuarioText.setColumns(10);
+		
+		InformacionPreguntas = new JButton("");
+		InformacionPreguntas.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/informacion_pequeno.png")));
+		InformacionPreguntas.setBounds(471, 56, 25, 24);
+		PanelPreguntas.add(InformacionPreguntas);
+		
+		NivelPreguntas = new JTextField();
+		NivelPreguntas.setBounds(233, 15, 86, 20);
+		PanelPreguntas.add(NivelPreguntas);
+		NivelPreguntas.setColumns(10);
+		
+		RectanguloPreguntas2 = new JLabel("");
+		RectanguloPreguntas2.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/AzulMarino2.png")));
+		RectanguloPreguntas2.setBounds(0, 0, 506, 45);
+		PanelPreguntas.add(RectanguloPreguntas2);
+		
+		RectanguloPreguntas = new JLabel("");
+		RectanguloPreguntas.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/AzulMarino3.png")));
+		RectanguloPreguntas.setBounds(460, 44, 46, 316);
+		PanelPreguntas.add(RectanguloPreguntas);
 		
 		//Quitar visibilidad Interfaz Preguntas//
 		
@@ -512,8 +671,8 @@ public class Interfaz extends JFrame {
 		Opcion_B.setVisible(false);
 		Opcion_C.setVisible(false);
 		Opcion_D.setVisible(false);
-		VerDinero.setVisible(false);
-		Salir.setVisible(false);
+		DineroPreguntas.setVisible(false);
+		SalirPreguntas.setVisible(false);
 		ComodinDescartarOpcion.setVisible(false);
 		ComodinLlamada.setVisible(false);
 		ComodinProteccion.setVisible(false);
@@ -548,20 +707,14 @@ public class Interfaz extends JFrame {
 		
 		//Quitar visibilidad Interfaz Inicio de sesion//
 		
-		IntroducirNombre.setVisible(false);
+		RegistrarseUsuario.setVisible(false);
 		CuadrotextoNombre.setVisible(false);
-		CuadrotextoApellidos.setVisible(false);
+		CuadrotextoContraseña.setVisible(false);
 		CuadrotextoDNI.setVisible(false);
 		NombreUsuario.setVisible(false);
 		DniUsuario.setVisible(false);
-		Contraseña.setVisible(false);
+		ContraseñaUsuario.setVisible(false);
 		FotoPanelUsuario.setVisible(false);
-		top1.setVisible(false);
-		top2.setVisible(false);
-		top3.setVisible(false);
-		top4.setVisible(false);
-		top5.setVisible(false);
-		salir.setVisible(false);
 
 	}
 }
