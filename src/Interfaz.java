@@ -163,13 +163,9 @@ public class Interfaz extends JFrame {
 		PanelPreguntas = 
 				new JPanel();
 		PanelPreguntas.setBackground(new Color(253, 247, 130));
-<<<<<<< HEAD
-		PanelPreguntas.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contenedor);
-=======
+
 		PanelPreguntas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		setContentPane(PanelPreguntas);
->>>>>>> branch 'master' of https://github.com/Daviihhh/PROYECTO_CONCURSILLO.git
 		PanelPreguntas.setLayout(null);
 		
 		
@@ -203,14 +199,9 @@ public class Interfaz extends JFrame {
 		PanelRegistrarse.setLayout(null);
 		
 		PanelInformacion = new JPanel();
-<<<<<<< HEAD
-		PanelInformacion.setBounds(0, 0, 506, 361);
-		PanelUsuario.add(PanelInformacion);
-=======
 		PanelInformacion.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelInformacion.setBounds(0, 0, 506, 361);
 		PanelRegistrarse.add(PanelInformacion);
->>>>>>> branch 'master' of https://github.com/Daviihhh/PROYECTO_CONCURSILLO.git
 		PanelInformacion.setBackground(new Color(253, 247, 130));
 		PanelInformacion.setLayout(null);
 		
