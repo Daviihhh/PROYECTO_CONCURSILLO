@@ -145,7 +145,7 @@ public class Interfaz extends JFrame {
 		PanelUsuario.setLayout(null);
 		
 		PanelInformacion = new JPanel();
-		PanelInformacion.setBounds(468, 287, 506, 361);
+		PanelInformacion.setBounds(0, 0, 506, 361);
 		PanelUsuario.add(PanelInformacion);
 		PanelInformacion.setBackground(new Color(253, 247, 130));
 		PanelInformacion.setLayout(null);
@@ -154,7 +154,7 @@ public class Interfaz extends JFrame {
 		PanelRanking.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelRanking.setForeground(new Color(253, 247, 130));
 		PanelRanking.setBackground(new Color(253, 247, 130));
-		PanelRanking.setBounds(-483, 299, 506, 361);
+		PanelRanking.setBounds(0, 0, 506, 361);
 		PanelInformacion.add(PanelRanking);
 		PanelRanking.setLayout(null);
 		
@@ -524,5 +524,23 @@ public class Interfaz extends JFrame {
 		top5.setVisible(false);
 		salir.setVisible(false);
 
+		
+		
+		
+		
+
+	}
+	
+	public void concursillo () {
+
+		/* 
+		 * 
+		 *  INTERFAZ CLASIFICACION
+		 *  
+		 *  PARTE SUPERIOR DERECHA ESTA EL USUARIO: Y EL JTEXTFIELD, SE LLAMA "NombreUser"
+		 *  
+		 *  
+		 *  
+		 *  */
 	}
 }
