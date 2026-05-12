@@ -29,7 +29,7 @@ public class PanelPreguntas extends JPanel {
 
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
-        setBounds(100, 100, 506, 355);
+        setBounds(0, 0, 506, 361);
         setLayout(null);
 
         
@@ -119,7 +119,7 @@ public class PanelPreguntas extends JPanel {
         
         lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/AzulMarino3.png")));
-        lblNewLabel_1.setBounds(460, 39, 46, 316);
+        lblNewLabel_1.setBounds(460, 39, 46, 322);
         add(lblNewLabel_1);
     }
     

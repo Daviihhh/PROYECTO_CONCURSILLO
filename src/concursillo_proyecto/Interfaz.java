@@ -9,7 +9,7 @@ public class Interfaz extends JFrame {
     public static final String INICIO         = "INICIO";
     public static final String PREGUNTAS      = "PREGUNTAS";
     public static final String RANKING        = "RANKING";
-    public static final String USUARIO        = "USUARIO";
+    public static final String REGISTRARSE        = "REGISTRARSE";
     public static final String DINERO         = "DINERO";
     public static final String ELEGIR         = "ELEGIR";
     public static final String INICIARSESION  = "INICIARSESION";
@@ -64,7 +64,7 @@ public class Interfaz extends JFrame {
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
         concursillo.add(panelRanking,        RANKING);
-        concursillo.add(panelRegistrarse,        USUARIO);
+        concursillo.add(panelRegistrarse,        REGISTRARSE);
         concursillo.add(panelDinero,         DINERO);
         concursillo.add(panelElegir,         ELEGIR);
         concursillo.add(panelIniciarSesion,  INICIARSESION);
