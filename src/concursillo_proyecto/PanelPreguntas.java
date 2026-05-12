@@ -2,6 +2,8 @@ package concursillo_proyecto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelPreguntas extends JPanel {
 
@@ -21,9 +23,15 @@ public class PanelPreguntas extends JPanel {
 
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
+        setBounds(100, 100, 522, 400);
         setLayout(null);
 
         Opcion_A = new JButton("A) Honkai");
+        Opcion_A.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	
+        	}
+        });
         Opcion_A.setBackground(new Color(160, 254, 219));
         Opcion_A.setBounds(41, 247, 175, 23);
         add(Opcion_A);
