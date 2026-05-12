@@ -1,7 +1,10 @@
 package concursillo_proyecto;
+//cambio
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelPreguntas extends JPanel {
 
@@ -28,6 +31,11 @@ public class PanelPreguntas extends JPanel {
 
         
         Opcion_A = new JButton("A) Honkai");
+        Opcion_A.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	
+        	}
+        });
         Opcion_A.setBackground(new Color(160, 254, 219));
         Opcion_A.setBounds(41, 247, 175, 23);
         add(Opcion_A);

@@ -1,4 +1,5 @@
 package concursillo_proyecto;
+//cambio
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -7,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelIniciarSesion extends JPanel {
 
@@ -19,6 +23,7 @@ public class PanelIniciarSesion extends JPanel {
     public JTextField NombreRellenar;
     public JTextField ContraseñaRellenar;
     public JLabel lblNewLabel_1;
+    public JButton btnIniciarSesion, Salir3;
 
     public PanelIniciarSesion(CardLayout cardLayout, JPanel concursillo) {
         setBackground(new Color(253, 247, 130));
@@ -64,5 +69,21 @@ public class PanelIniciarSesion extends JPanel {
         lblNewLabel_1.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/FondoAzul.png")));
         lblNewLabel_1.setBounds(0, 167, 506, 204);
         add(lblNewLabel_1);
+        
+        btnIniciarSesion = new JButton("Iniciar sesión");
+        btnIniciarSesion.addActionListener(e -> cardLayout.show(concursillo, Interfaz.PREGUNTAS));
+        add(btnIniciarSesion);
+        btnIniciarSesion.setBounds(161, 141, 170, 43);
+        
+        Salir3 = new JButton("");
+        Salir3.setIcon(new ImageIcon(getClass().getResource("/resource/salir.png")));
+        Salir3.setBounds(10, 327, 25, 24);
+        Salir3.addActionListener(e -> cardLayout.show(concursillo, Interfaz.INICIO));
+        add(Salir3);
+        
+
+
+        btnIniciarSesion.setBounds(33, 87, 84, 20);
+        add(btnIniciarSesion);
     }
 }
