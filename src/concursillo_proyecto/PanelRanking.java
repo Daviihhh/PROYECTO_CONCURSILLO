@@ -1,5 +1,5 @@
 package concursillo_proyecto;
-//cambio
+//cambi
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

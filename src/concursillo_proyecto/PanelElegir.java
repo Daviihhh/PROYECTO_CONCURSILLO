@@ -1,5 +1,5 @@
 package concursillo_proyecto;
-//cambio
+//cambi
 
 import java.awt.CardLayout;
 import java.awt.Color;
