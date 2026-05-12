@@ -64,5 +64,6 @@ public class PanelIniciarSesion extends JPanel {
         lblNewLabel_1.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/FondoAzul.png")));
         lblNewLabel_1.setBounds(0, 167, 506, 204);
         add(lblNewLabel_1);
+        
     }
 }

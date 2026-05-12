@@ -89,5 +89,12 @@ public class PanelUsuario extends JPanel {
         FondoAzul.setIcon(new ImageIcon(getClass().getResource("/resource/FondoAzul.png")));
         FondoAzul.setBounds(0, 148, 506, 213);
         add(FondoAzul);
+        
+        
+        String nombre = NombreUsuario.getText();
+        String contra = Contraseña.getText();
+        String dni = DniUsuario.getText();
+        
+        
     }
 }
