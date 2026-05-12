@@ -110,7 +110,7 @@ public class Interfaz extends JFrame {
 	public JTextField ContraseñaIniciarSesion;
 	public JTextField NombreRellenar;
 	public JTextField ContraseñaRellenar;
-	public JLabel lblNewLabel_1;
+	public JLabel FotoInicioSesion;
 	public JPanel Panelinfo;
 	public JLabel InfoFoto;
 	public JLabel fondoInfo;
@@ -118,6 +118,9 @@ public class Interfaz extends JFrame {
 	public JTextField IniciarSesionCuenta;
 	public JTextField RegistrarUnaCuenta;
 	public JLabel FondoCrearCuenta;
+	public JButton BotonElegir;
+	public JButton BotonInfo;
+	public JButton BotonInicioSesion;
 	
 	/**
 	 * Launch the application.
@@ -208,6 +211,11 @@ public class Interfaz extends JFrame {
 		Panelinfo.add(PanelElegir);
 		PanelElegir.setLayout(null);
 		
+		BotonElegir = new JButton("");
+		BotonElegir.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		BotonElegir.setBounds(10, 327, 25, 24);
+		PanelElegir.add(BotonElegir);
+		
 		IniciarSesionCuenta = new JTextField();
 		IniciarSesionCuenta.setHorizontalAlignment(SwingConstants.CENTER);
 		IniciarSesionCuenta.setText("Iniciar sesion en una cuenta");
@@ -236,6 +244,11 @@ public class Interfaz extends JFrame {
 		fondoInfo.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/Otrofondo.png")));
 		fondoInfo.setBounds(0, 0, 160, 361);
 		Panelinfo.add(fondoInfo);
+		
+		BotonInfo = new JButton("");
+		BotonInfo.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		BotonInfo.setBounds(456, 11, 25, 24);
+		Panelinfo.add(BotonInfo);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/iniciarsesion (1).png")));
@@ -272,10 +285,15 @@ public class Interfaz extends JFrame {
 		PanelIniciarSesion.add(ContraseñaRellenar);
 		ContraseñaRellenar.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
-		lblNewLabel_1.setBounds(0, 167, 506, 204);
-		PanelIniciarSesion.add(lblNewLabel_1);
+		BotonInicioSesion = new JButton("");
+		BotonInicioSesion.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/salir.png")));
+		BotonInicioSesion.setBounds(10, 327, 25, 23);
+		PanelIniciarSesion.add(BotonInicioSesion);
+		
+		FotoInicioSesion = new JLabel("");
+		FotoInicioSesion.setIcon(new ImageIcon(Interfaz.class.getResource("/resource/FondoAzul.png")));
+		FotoInicioSesion.setBounds(0, 167, 506, 204);
+		PanelIniciarSesion.add(FotoInicioSesion);
 		
 		top1 = new JTextField();
 		top1.setBackground(new Color(255, 255, 255));
