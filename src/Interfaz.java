@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -32,6 +34,9 @@ import javax.swing.border.CompoundBorder;
 public class Interfaz extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+
+	
 	private JPanel PanelPreguntas;
 	public JButton Opcion_A;
 	public JButton Opcion_B;
@@ -122,6 +127,15 @@ public class Interfaz extends JFrame {
 	public JButton BotonInfo;
 	public JButton BotonInicioSesion;
 	
+	
+	private CardLayout cardLayout;
+	private JPanel contenedor;
+
+	private PanelInicio panelInicio;
+	private PanelPreguntas panelPreguntas;
+	private PanelRanking panelRanking;
+	
+    
 	/**
 	 * Launch the application.
 	 */
@@ -141,15 +155,24 @@ public class Interfaz extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+
+	
 	public Interfaz() {
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 400);
 		PanelPreguntas = 
 				new JPanel();
 		PanelPreguntas.setBackground(new Color(253, 247, 130));
+
 		PanelPreguntas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		setContentPane(PanelPreguntas);
 		PanelPreguntas.setLayout(null);
+		
+		
+
 		
 		Opcion_A = new JButton("A) Honkai");
 		Opcion_A.setBackground(new Color(160, 254, 219));
