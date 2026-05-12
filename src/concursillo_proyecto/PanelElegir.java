@@ -53,7 +53,7 @@ public class PanelElegir extends JPanel {
         btnIniciarCuenta.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIARSESION));
         add(btnIniciarCuenta);
       
-        // Botón de registrar cuenta
+        // Botón de registrar cuent
 
         btnRegistrarCuenta = new JButton("Registrar nueva cuenta");
         btnRegistrarCuenta.setBounds(345, 22, 151, 57);
