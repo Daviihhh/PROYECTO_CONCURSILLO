@@ -12,7 +12,7 @@ public class PanelUsuario extends JPanel {
     public JFormattedTextField CuadrotextoNombre;
     public JTextPane NombreUsuario, DniUsuario, Contraseña;
     public JLabel ImagenUser, FondoAzul;
-    public JButton Salir2, BotonEntrar, btnNewButton;
+    public JButton Salir2, BotonEntrar;
 
     public PanelUsuario(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
@@ -23,7 +23,7 @@ public class PanelUsuario extends JPanel {
         IntroducirNombre.setEditable(false);
         IntroducirNombre.setHorizontalAlignment(SwingConstants.CENTER);
         IntroducirNombre.setText("Registrar una cuenta");
-        IntroducirNombre.setBounds(138, 170, 225, 35);
+        IntroducirNombre.setBounds(134, 169, 225, 35);
         IntroducirNombre.setColumns(10);
         add(IntroducirNombre);
 
@@ -43,17 +43,17 @@ public class PanelUsuario extends JPanel {
 
         NombreUsuario = new JTextPane();
         NombreUsuario.setText("Nombre");
-        NombreUsuario.setBounds(138, 261, 74, 20);
+        NombreUsuario.setBounds(149, 261, 74, 20);
         add(NombreUsuario);
 
         DniUsuario = new JTextPane();
         DniUsuario.setText("DNI");
-        DniUsuario.setBounds(138, 230, 74, 20);
+        DniUsuario.setBounds(149, 230, 74, 20);
         add(DniUsuario);
 
         Contraseña = new JTextPane();
         Contraseña.setText("Contraseña");
-        Contraseña.setBounds(138, 292, 74, 20);
+        Contraseña.setBounds(149, 292, 74, 20);
         add(Contraseña);
 
         ImagenUser = new JLabel("");
@@ -64,18 +64,13 @@ public class PanelUsuario extends JPanel {
         Salir2 = new JButton("");
         Salir2.setIcon(new ImageIcon(getClass().getResource("/resource/salir.png")));
         Salir2.setBounds(10, 327, 25, 24);
-        Salir2.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
+        Salir2.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIR));
         add(Salir2);
 
         BotonEntrar = new JButton("Entrar");
         BotonEntrar.setBounds(198, 328, 89, 23);
         BotonEntrar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
         add(BotonEntrar);
-
-        btnNewButton = new JButton("");
-        btnNewButton.setIcon(new ImageIcon(getClass().getResource("/resource/informacion_pequeno.png")));
-        btnNewButton.setBounds(471, 327, 25, 24);
-        add(btnNewButton);
 
         // Fondo al final para que quede detrás
         FondoAzul = new JLabel("");
