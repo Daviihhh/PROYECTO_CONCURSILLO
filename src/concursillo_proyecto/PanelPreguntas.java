@@ -19,10 +19,14 @@ public class PanelPreguntas extends JPanel {
     public JButton Salir;
     public JButton VerDinero;
 
+    
+
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
+        setBounds(100, 100, 522, 400);
         setLayout(null);
 
+        
         Opcion_A = new JButton("A) Honkai");
         Opcion_A.setBackground(new Color(160, 254, 219));
         Opcion_A.setBounds(41, 247, 175, 23);
@@ -65,7 +69,7 @@ public class PanelPreguntas extends JPanel {
         ComodinLlamada.setIcon(new ImageIcon(getClass().getResource("/resource/llamada.png")));
         ComodinLlamada.setBounds(422, 11, 25, 24);
         add(ComodinLlamada);
-
+        
         ComodinDescartarOpcion = new JButton("");
         ComodinDescartarOpcion.setIcon(new ImageIcon(getClass().getResource("/resource/Eliminar.png")));
         ComodinDescartarOpcion.setBounds(471, 11, 25, 24);
@@ -83,4 +87,5 @@ public class PanelPreguntas extends JPanel {
         VerDinero.addActionListener(e -> cardLayout.show(contenedor, Interfaz.DINERO));
         add(VerDinero);
     }
+    
 }
