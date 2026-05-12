@@ -1,10 +1,10 @@
 package concursillo_proyecto;
-
+//cambi
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
-public class PanelUsuario extends JPanel {
+public class PanelRegistrarse extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,7 +14,7 @@ public class PanelUsuario extends JPanel {
     public JLabel ImagenUser, FondoAzul;
     public JButton Salir2, BotonEntrar;
 
-    public PanelUsuario(CardLayout cardLayout, JPanel contenedor) {
+    public PanelRegistrarse(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
         setLayout(null);
         setBounds(0, 0, 506, 361);
@@ -74,7 +74,7 @@ public class PanelUsuario extends JPanel {
 
         // Fondo al final para que quede detrás
         FondoAzul = new JLabel("");
-        FondoAzul.setIcon(new ImageIcon(getClass().getResource("/resource/FondoAzul.png")));
+        FondoAzul.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/FondoAzul.png")));
         FondoAzul.setBounds(0, 148, 506, 213);
         add(FondoAzul);
     }

@@ -15,7 +15,9 @@ public class PanelElegir extends JPanel {
     private static final long serialVersionUID = 1L;
     public JLabel FondoCrearCuenta;
     public JButton IniciarSesion, btnIniciarCuenta, btnRegistrarCuenta;
+
     public JButton SalirElegir;
+
 
     public PanelElegir(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
@@ -28,7 +30,8 @@ public class PanelElegir extends JPanel {
         // Botón de iniciar sesión
 
         btnIniciarCuenta = new JButton("Iniciar sesión con tu cuenta");
-        btnIniciarCuenta.setBounds(133, 88, 216, 69);
+
+        btnIniciarCuenta.setBounds(133, 100, 216, 69);
         btnIniciarCuenta.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIARSESION));
         add(btnIniciarCuenta);
       
@@ -51,7 +54,10 @@ public class PanelElegir extends JPanel {
                 add(FondoCrearCuenta);
         
 
-           
+
+        
+        
+
       
        
 
