@@ -184,7 +184,7 @@ public class Interfaz extends JFrame {
 		PanelInicio = new JPanel();
 		PanelInicio.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelInicio.setBackground(new Color(253, 247, 130));
-		PanelInicio.setBounds(0, -1, 506, 361);
+		PanelInicio.setBounds(-293, 319, 506, 361);
 		PanelPreguntas.add(PanelInicio);
 		PanelInicio.setLayout(null);
 		
@@ -196,14 +196,14 @@ public class Interfaz extends JFrame {
 		
 		PanelRegistrarse = new JPanel();
 		PanelRegistrarse.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
-		PanelRegistrarse.setBounds(0, 0, 506, 361);
+		PanelRegistrarse.setBounds(137, 318, 506, 361);
 		PanelInicio.add(PanelRegistrarse);
 		PanelRegistrarse.setBackground(new Color(253, 247, 130));
 		PanelRegistrarse.setLayout(null);
 		
 		PanelInformacion = new JPanel();
 		PanelInformacion.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
-		PanelInformacion.setBounds(0, 0, 506, 361);
+		PanelInformacion.setBounds(208, 305, 506, 361);
 		PanelRegistrarse.add(PanelInformacion);
 		PanelInformacion.setBackground(new Color(253, 247, 130));
 		PanelInformacion.setLayout(null);
@@ -212,25 +212,25 @@ public class Interfaz extends JFrame {
 		PanelRanking.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64), new Color(0, 0, 64)));
 		PanelRanking.setForeground(new Color(253, 247, 130));
 		PanelRanking.setBackground(new Color(253, 247, 130));
-		PanelRanking.setBounds(0, 0, 506, 361);
+		PanelRanking.setBounds(-354, 312, 506, 361);
 		PanelInformacion.add(PanelRanking);
 		PanelRanking.setLayout(null);
 		
 		PanelIniciarSesion = new JPanel();
 		PanelIniciarSesion.setBackground(new Color(253, 247, 130));
-		PanelIniciarSesion.setBounds(0, 0, 506, 361);
+		PanelIniciarSesion.setBounds(460, 329, 506, 361);
 		PanelRanking.add(PanelIniciarSesion);
 		PanelIniciarSesion.setLayout(null);
 		
 		Panelinfo = new JPanel();
 		Panelinfo.setBackground(new Color(253, 247, 130));
-		Panelinfo.setBounds(0, 0, 506, 361);
+		Panelinfo.setBounds(-397, 327, 506, 361);
 		PanelIniciarSesion.add(Panelinfo);
 		Panelinfo.setLayout(null);
 		
 		PanelElegir = new JPanel();
 		PanelElegir.setBackground(new Color(253, 247, 130));
-		PanelElegir.setBounds(0, 0, 506, 361);
+		PanelElegir.setBounds(-453, 326, 506, 361);
 		Panelinfo.add(PanelElegir);
 		PanelElegir.setLayout(null);
 		

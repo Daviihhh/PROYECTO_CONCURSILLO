@@ -22,12 +22,12 @@ public class PanelInicio extends JPanel {
 
         NuevaPartida = new JButton("Crear Nueva Partida");
         NuevaPartida.setBounds(5, 108, 150, 23);
-        NuevaPartida.addActionListener(e -> cardLayout.show(contenedor, Interfaz.USUARIO));
+        NuevaPartida.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIR));
         add(NuevaPartida);
 
         InformacionJuego = new JButton("Informacion Del Juego");
         InformacionJuego.setBounds(5, 168, 150, 23);
-        InformacionJuego.addActionListener(e -> cardLayout.show(contenedor, Interfaz.DINERO));
+        InformacionJuego.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INFO));
         add(InformacionJuego);
 
         SalirJuego = new JButton("Salir");

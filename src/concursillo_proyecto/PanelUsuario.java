@@ -8,18 +8,11 @@ public class PanelUsuario extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public JTextField IntroducirNombre;
+    public JTextField IntroducirNombre, CuadrotextoApellidos, CuadrotextoDNI;
     public JFormattedTextField CuadrotextoNombre;
-    public JTextField CuadrotextoApellidos;
-    public JTextField CuadrotextoDNI;
-    public JTextPane NombreUsuario;
-    public JTextPane DniUsuario;
-    public JTextPane Contraseña;
-    public JLabel ImagenUser;
-    public JButton Salir2;
-    public JButton BotonEntrar;
-    public JButton btnNewButton;
-    public JLabel FondoAzul;
+    public JTextPane NombreUsuario, DniUsuario, Contraseña;
+    public JLabel ImagenUser, FondoAzul;
+    public JButton Salir2, BotonEntrar, btnNewButton;
 
     public PanelUsuario(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
