@@ -22,7 +22,7 @@ public class Interfaz extends JFrame {
     public PanelInicio panelInicio;
     public PanelPreguntas panelPreguntas;
     public PanelRanking panelRanking;
-    public PanelUsuario panelUsuario;
+    public PanelRegistrarse panelRegistrarse;
     public PanelDinero panelDinero;
     public PanelElegir panelElegir;
     public PanelIniciarSesion panelIniciarSesion;
@@ -54,7 +54,7 @@ public class Interfaz extends JFrame {
 
         panelPreguntas    = new PanelPreguntas(cardLayout, concursillo);
         panelRanking      = new PanelRanking(cardLayout, concursillo);
-        panelUsuario      = new PanelUsuario(cardLayout, concursillo);
+        panelRegistrarse      = new PanelRegistrarse(cardLayout, concursillo);
         panelDinero       = new PanelDinero(cardLayout, concursillo);
         panelElegir       = new PanelElegir(cardLayout, concursillo);
         panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo);
@@ -64,7 +64,7 @@ public class Interfaz extends JFrame {
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
         concursillo.add(panelRanking,        RANKING);
-        concursillo.add(panelUsuario,        USUARIO);
+        concursillo.add(panelRegistrarse,        USUARIO);
         concursillo.add(panelDinero,         DINERO);
         concursillo.add(panelElegir,         ELEGIR);
         concursillo.add(panelIniciarSesion,  INICIARSESION);

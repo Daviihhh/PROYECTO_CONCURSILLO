@@ -124,14 +124,14 @@ public class PanelDinero extends JPanel {
         textoUsuario.setBounds(10, 10, 75, 20);
         add(textoUsuario);
 
-        FondoAzul1 = new JLabel("");
-        FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/AzulMarino2.png")));
-        FondoAzul1.setBounds(0, 0, 506, 37);
-        add(FondoAzul1);
-
         FondoAzul2 = new JLabel("");
         FondoAzul2.setIcon(new ImageIcon(getClass().getResource("/resource/DINERO.png")));
         FondoAzul2.setBounds(189, 136, 202, 214);
         add(FondoAzul2);
+        
+                FondoAzul1 = new JLabel("");
+                FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/AzulMarino2.png")));
+                FondoAzul1.setBounds(0, 0, 506, 37);
+                add(FondoAzul1);
     }
 }

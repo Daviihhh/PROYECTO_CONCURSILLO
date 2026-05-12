@@ -16,7 +16,7 @@ public class Panelinfo extends JPanel {
     public JLabel fondoInfo;
     public JButton SalirInformacion;
 
-    public Panelinfo(CardLayout cardLayout, JPanel concursillo) {
+    public Panelinfo(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
@@ -34,6 +34,7 @@ public class Panelinfo extends JPanel {
         SalirInformacion = new JButton("");
         SalirInformacion.setIcon(new ImageIcon(Panelinfo.class.getResource("/resource/salir.png")));
         SalirInformacion.setBounds(471, 327, 25, 23);
+        SalirInformacion.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
         add(SalirInformacion);
     }
 }
