@@ -1,8 +1,10 @@
 package concursillo_proyecto;
+//cambi
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PanelRanking extends JPanel {
 
@@ -86,5 +88,28 @@ public class PanelRanking extends JPanel {
         lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_banner.png")));
         lblNewLabel_6.setBounds(339, 86, 140, 235);
         add(lblNewLabel_6);
+
+        /*
+        //Creo instancia
+        GestionMongoDB gestionRanked = new GestionMongoDB();
+        ArrayList<Usuario> rankeds = gestionRanked.getOrdenRanking();s
+
+        if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre());
+        if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre());
+        if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre());
+        if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre());
+        if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre());   --> desactualizado. No recarga al abrir y si no hay
+         																		 datos, da error conforme está escrito*/
+    }
+    
+    public void actualizarRanking() {
+        GestionMongoDB gestionRanked = new GestionMongoDB();
+        ArrayList<Usuario> rankeds = gestionRanked.getOrdenRanking();
+
+        if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre());
+        if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre());
+        if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre());
+        if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre());
+        if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre());
     }
 }

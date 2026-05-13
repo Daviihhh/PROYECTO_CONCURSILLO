@@ -1,8 +1,10 @@
 package concursillo_proyecto;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,6 +16,9 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
+
+import java.awt.event.ActionEvent;
+
 
 public class PanelPreguntas extends JPanel {
 
@@ -30,37 +35,42 @@ public class PanelPreguntas extends JPanel {
     public JButton ComodinDescartarOpcion;
     public JButton Salir;
     public JButton VerDinero;
+
     public Pregunta preguntaActual;
     public ArrayList<Pregunta> preguntas;
     public String tema;
+    private GestionMongoDB gestion;
+
+    public JButton VerInfo;
+    public JLabel lblNewLabel;
+    public JLabel lblNewLabel_1;
+    
+    private boolean escudoActivado = false;
+
+
     
 
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
+        setBounds(0, 0, 506, 361);
         setLayout(null);
         
-        tema = "Futbol";
-     // ✅ Al crear la instancia ya se conecta y carga las preguntas
-        GestionMongoDB gestion = new GestionMongoDB();
-        gestion.guardarTema("Electromedicina"); // el tema que corresponda
-
-        ArrayList<Pregunta> preguntas = GestionMongoDB.obtenerPreguntaAleatoria(gestion.getTema());
-
-        if (preguntas.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "No hay preguntas disponibles para esta temática.",
-                "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        gestion = new GestionMongoDB();
+        gestion.guardarTema("Juegos");
+        gestion.iniciarConcursillo(gestion.getTema());
 
         Opcion_A = new JButton("");
         Opcion_A.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		comprobarRespuesta(Opcion_A);
+
+       
+        	
+
         	}
         });
         Opcion_A.setBackground(new Color(160, 254, 219));
-        Opcion_A.setBounds(41, 247, 175, 23);
+        Opcion_A.setBounds(28, 247, 175, 23);
         add(Opcion_A);
         
 
@@ -71,7 +81,7 @@ public class PanelPreguntas extends JPanel {
         	}
         });
         Opcion_B.setBackground(new Color(160, 254, 219));
-        Opcion_B.setBounds(290, 247, 175, 23);
+        Opcion_B.setBounds(247, 247, 175, 23);
         add(Opcion_B);
 
         Opcion_C = new JButton("");
@@ -81,7 +91,7 @@ public class PanelPreguntas extends JPanel {
         	}
         });
         Opcion_C.setBackground(new Color(160, 254, 219));
-        Opcion_C.setBounds(41, 281, 175, 23);
+        Opcion_C.setBounds(28, 281, 175, 23);
         add(Opcion_C);
 
         Opcion_D = new JButton("");
@@ -91,56 +101,111 @@ public class PanelPreguntas extends JPanel {
         	}
         });
         Opcion_D.setBackground(new Color(160, 254, 219));
-        Opcion_D.setBounds(290, 281, 175, 23);
+        Opcion_D.setBounds(247, 281, 175, 23);
         add(Opcion_D);
 
         Pregunta = new JTextField();
         Pregunta.setEditable(false);
         Pregunta.setBackground(new Color(160, 254, 219));
+
         Pregunta.setText("");
         Pregunta.setBounds(85, 205, 337, 31);
+
+
         Pregunta.setColumns(10);
         add(Pregunta);
 
         ImagenConcursillo = new JLabel("");
         ImagenConcursillo.setIcon(new ImageIcon(getClass().getResource("/resource/ConcursilloLogo.png")));
-        ImagenConcursillo.setBounds(208, 97, 85, 80);
+        ImagenConcursillo.setBounds(166, 114, 85, 80);
         add(ImagenConcursillo);
 
         ComodinProteccion = new JButton("");
+        ComodinProteccion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                escudoActivado = true;
+                ComodinProteccion.setEnabled(false);
+                System.out.println("Escudo activado");
+            }
+        });
         ComodinProteccion.setIcon(new ImageIcon(getClass().getResource("/resource/escudo.png")));
-        ComodinProteccion.setBounds(372, 11, 25, 24);
+        ComodinProteccion.setBounds(368, 11, 25, 24);
         add(ComodinProteccion);
 
         ComodinLlamada = new JButton("");
+        ComodinLlamada.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		comodinLlamada();
+        		ComodinLlamada.setEnabled(false); //setEnabled lo pone en gris y desactiva su función como evento
+        	}
+        });
         ComodinLlamada.setIcon(new ImageIcon(getClass().getResource("/resource/llamada.png")));
-        ComodinLlamada.setBounds(422, 11, 25, 24);
+        ComodinLlamada.setBounds(417, 11, 25, 24);
         add(ComodinLlamada);
-
+        
         ComodinDescartarOpcion = new JButton("");
+        ComodinDescartarOpcion.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		comodinIncorrecta();
+        		ComodinDescartarOpcion.setEnabled(false);
+        	}
+        });
         ComodinDescartarOpcion.setIcon(new ImageIcon(getClass().getResource("/resource/Eliminar.png")));
-        ComodinDescartarOpcion.setBounds(471, 11, 25, 24);
+        ComodinDescartarOpcion.setBounds(467, 11, 25, 24);
         add(ComodinDescartarOpcion);
 
-        Salir = new JButton("");
-        Salir.setIcon(new ImageIcon(getClass().getResource("/resource/salir.png")));
-        Salir.setBounds(10, 11, 25, 24);
-        Salir.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
-        add(Salir);
+        //Salir = new JButton("");
+        //Salir.setIcon(new ImageIcon(getClass().getResource("/resource/salir.png")));
+        //Salir.setBounds(10, 11, 25, 24);
+        // Salir.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
+        //add(Salir);
 
         VerDinero = new JButton("");
         VerDinero.setIcon(new ImageIcon(getClass().getResource("/resource/verDinero.png")));
         VerDinero.setBounds(56, 11, 25, 24);
         VerDinero.addActionListener(e -> cardLayout.show(contenedor, Interfaz.DINERO));
         add(VerDinero);
-            
+
+        
+        VerInfo = new JButton("");
+        VerInfo.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//metodoverdinero??
+        	}
+        });
+        VerInfo.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/informacion_pequeno.png")));
+        VerInfo.setBounds(467, 52, 25, 24);
+        VerInfo.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INFO));
+        add(VerInfo);
+        
+        lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/AzulMarino.png")));
+        lblNewLabel.setBounds(0, 0, 506, 41);
+        add(lblNewLabel);
+        
+        lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/AzulMarino3.png")));
+        lblNewLabel_1.setBounds(460, 39, 46, 322);
+        add(lblNewLabel_1);
+
+        cargarPregunta();
     }
     
     
-    private void comodinEscudo() {
-		//tengo que hacer que si pinchas en una opcion incorrecta, el escudo te proteja de algún modo
-		
-	}
+    private void comodinEscudo(JButton boton) {
+        String texto = boton.getText();
+
+        if (texto.equals(preguntaActual.getCorrecta())) {
+            System.out.println("Correcto");
+            gestion.siguientePregunta();
+            cargarPregunta();
+        } else {
+            System.out.println("Incorrecto pero protegido por el escudo");
+            JOptionPane.showMessageDialog(this, "¡El escudo te ha protegido!");
+            escudoActivado = false;
+            boton.setVisible(false);
+        }
+    }
 	
 	private void comodinIncorrecta() {
 		boolean seguir = true;
@@ -182,42 +247,20 @@ public class PanelPreguntas extends JPanel {
         timer.scheduleAtFixedRate(tarea, 0, 1000);
 	}
 	
-	private void cargarPregunta(int numero) {
-		 	
-		preguntas = GestionMongoDB.obtenerPreguntaAleatoria(tema); //preguntas en el arrayli
-	    
-	    preguntaActual = preguntas.get(numero); //este numero me lo tiene que pasar el metodo del concursillo
-
-		Pregunta.setText(preguntaActual.getEnunciado());
-
+	// PON esto:
+	private void cargarPregunta() {
+	    preguntaActual = gestion.getPreguntaActual();
+	    if (preguntaActual == null) {
+	        JOptionPane.showMessageDialog(this, "¡Has terminado el concursillo!");
+	        return;
+	    }
+	    Pregunta.setText(preguntaActual.getEnunciado());
 	    Opcion_A.setText(preguntaActual.getRespuestas().get(0));
 	    Opcion_B.setText(preguntaActual.getRespuestas().get(1));
 	    Opcion_C.setText(preguntaActual.getRespuestas().get(2));
-	    Opcion_D.setText(preguntaActual.getRespuestas().get(3)); //tengo que pedirle que si el que pincha coincide con el correcto,
-	    														 //limpie las opciones, la pregunta, y que sume uno (metodo aparte)
+	    Opcion_D.setText(preguntaActual.getRespuestas().get(3));
 	}
-	
-	private void presionarCuandoEscudo(JButton botonPulsado) {
 
-	    String respuestaUsuario = botonPulsado.getText();
-
-	    if(!respuestaUsuario.equals(preguntaActual.getCorrecta())) {
-	    	botonPulsado.setText("[RESPUESTA INCORRECTA DESTRUIDA]");
-	    }
-	}
-	
-	private void presionarRespuesta(JButton botonPulsado) {
-
-	    String respuestaUsuario = botonPulsado.getText();
-
-	    if(respuestaUsuario.equals(preguntaActual.getCorrecta())) {
-	        
-	    	
-	    } else {
-
-	        System.out.println("Incorrecto");
-	    }
-	}
 	
 	public void Concursillo() {
 		
@@ -229,26 +272,30 @@ public class PanelPreguntas extends JPanel {
 		Opcion_B.addActionListener(listenerOpciones);
 		Opcion_C.addActionListener(listenerOpciones);
 		Opcion_D.addActionListener(listenerOpciones);
-		
-		//COMODIN ESCUDO
-		/*ActionListener listenerEscudo  = e -> {
-			JButton comodinEscudo
-			presionarCuandoEscudo(boton);
-		}*/
 	}
 	
 	private void comprobarRespuesta(JButton boton) {
+	    if (escudoActivado) {
+	        comodinEscudo(boton);
+	        return;
+	    }
 
 	    String texto = boton.getText();
-
-	    if(texto.equals(preguntaActual.getCorrecta())) {
-
+	    if (texto.equals(preguntaActual.getCorrecta())) {
 	        System.out.println("Correcto");
-
+	        gestion.siguientePregunta();
+	        cargarPregunta();
+	        cajasRespuestaVisibles();
 	    } else {
-
 	        System.out.println("Incorrecto");
 	    }
+	}
+	
+	private void cajasRespuestaVisibles() {
+		Opcion_A.setVisible(true);
+        Opcion_B.setVisible(true);
+        Opcion_C.setVisible(true);
+        Opcion_D.setVisible(true);
 	}
 
 }

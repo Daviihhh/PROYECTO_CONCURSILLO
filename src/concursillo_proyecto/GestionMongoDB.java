@@ -20,7 +20,24 @@ public class GestionMongoDB {
 
 	private static ArrayList<Document> preguntas = new ArrayList<>();
 	
+	private GestionMongoDB gestion;
+	private int numeroPregunta = 0;
+	
+	
 	static Scanner sc = new Scanner (System.in);
+	
+	public GestionMongoDB() {
+	    String uri = "mongodb+srv://silviaaoelectromedicina_db_user:Iws7ME7tVmxBLz5P@cluster0.5bm4pak.mongodb.net/";
+	    try {
+	        mongoClient = MongoClients.create(uri);
+	        database = mongoClient.getDatabase("ProyectoModular");
+	        coleccionPreguntas = database.getCollection("Preguntas");
+	        coleccionPreguntas.find().into(preguntas);
+	        System.out.println("Preguntas cargadas: " + preguntas.size());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 	public static void main (String [] args ) {
 				
@@ -29,20 +46,10 @@ public class GestionMongoDB {
 		boolean salida = false;
 		
 		int dificultad = 0;
-      String tematica = tema;
+		String tematica = tema;
 		
 		
     try  { 
-  	  
-    	  MongoClient mongoClient = MongoClients.create(uri);// crea una conexion con mongoDB))
-        
-    	//Base de datos y colección
-        MongoDatabase database = mongoClient.getDatabase("ProyectoModular");
-        
-        MongoCollection<Document> collectionUsuarios = database.getCollection("Usuarios");
-        MongoCollection<Document> collectionPreguntas = database.getCollection("Preguntas");
-        
-        collectionPreguntas.find().into(preguntas);
         
          //hay que meterle valor al tema y a la dificultad, imagino que cuando haga el scanner, justo despues llamo al metodo??
         //las preguntas las voy a hacer en un do while hasta que falle y que le saque si gana con otro booleano
@@ -136,7 +143,28 @@ public class GestionMongoDB {
 
         return concursillo;
     }
+    
+    
+    private ArrayList<Pregunta> concursillo = new ArrayList<>();
+    private int indicePreguntaActual = 0;
 
+    public void iniciarConcursillo(String tematicaEleg) {
+        concursillo = obtenerPreguntaAleatoria(tematicaEleg);
+        indicePreguntaActual = 0;
+    }
+
+    public Pregunta getPreguntaActual() {
+        if (indicePreguntaActual < concursillo.size()) {
+            return concursillo.get(indicePreguntaActual);
+        }
+        return null;
+    }
+
+    public void siguientePregunta() {
+        indicePreguntaActual++;
+    }
+    
+    
     // ✅ Cierra la conexión cuando ya no se necesite
     public void cerrarConexion() {
         if (mongoClient != null) {
@@ -147,6 +175,62 @@ public class GestionMongoDB {
 	public String getTema() {
 		// TODO Auto-generated method stub
 		return tema;
+	}
+	
+	// PON esto:
+	public void guardarUsuario(Usuario usuario) {
+	    try {
+	        MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
+	        
+	        Document doc = new Document()
+	            .append("nombre", usuario.getNombre())
+	            .append("dni", usuario.getDNI())
+	            .append("contrasena", usuario.getPassword())
+	            .append("puntuacion", usuario.getPuntuacion());
+	        
+	        coleccionUsuarios.insertOne(doc);
+	        System.out.println("Usuario guardado: " + usuario.getNombre());
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	public ArrayList<Usuario> getOrdenRanking() { //o lo hago static o creo una 
+		MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
+		
+		//Pasar de MongoCollection a ArrayList
+		ArrayList<Document> lista = new ArrayList<>();
+		coleccionUsuarios.find().into(lista);
+		ArrayList<Usuario> usuarios = new ArrayList<>();
+		ArrayList<Usuario> rankeds = new ArrayList<>();
+		
+		for (Document doc : lista) {
+		    Usuario u = new Usuario(
+		        doc.getString("nombre"),
+		        doc.getString("dni"),
+		        doc.getString("contrasena"),
+		        doc.getInteger("puntuacion")
+		    );
+		    usuarios.add(u);
+		}
+		
+		int min = -1;
+		int puntuacion = 0; 
+		
+		for(int i = 0; i < 5; i++) {
+			for(Usuario usuario : usuarios) {
+				puntuacion = usuario.getPuntuacion();
+				if(puntuacion > min && !rankeds.contains(usuario)) {
+					min = puntuacion;
+					rankeds.add(usuario);
+				}
+			}
+			min = -1;
+			
+		}
+		return rankeds;
 	}
 	
 }

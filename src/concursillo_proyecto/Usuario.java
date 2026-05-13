@@ -9,7 +9,7 @@ public class Usuario {
   
 
 
-    public Usuario ( String nombre, String DNI, int puntuacion,String password) {
+    public Usuario ( String nombre, String DNI, String password,int puntuacion) {
 
         this.nombre=nombre;
         this.DNI=DNI;
