@@ -14,6 +14,7 @@ public class Interfaz extends JFrame {
     public static final String ELEGIR         = "ELEGIR";
     public static final String INICIARSESION  = "INICIARSESION";
     public static final String INFO           = "INFO";
+    public static final String FALLAR		  = "FALLAR";
 
     private CardLayout cardLayout;
     private JPanel concursillo;
@@ -26,6 +27,7 @@ public class Interfaz extends JFrame {
     public PanelElegir panelElegir;
     public PanelIniciarSesion panelIniciarSesion;
     public Panelinfo panelinfo;
+    public PanelFallar panelFallar;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -47,8 +49,9 @@ public class Interfaz extends JFrame {
         concursillo = new JPanel(cardLayout);
 
         panelInicio = new PanelInicio(cardLayout, concursillo);
+        panelInicio.InformacionJuego.setLocation(5, 161);
         panelInicio.FondoAzull.setBounds(0, 0, 159, 361);
-        panelInicio.InformacionJuego.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        panelInicio.InformacionJuego.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
         panelPreguntas    = new PanelPreguntas(cardLayout, concursillo);
         panelRanking      = new PanelRanking(cardLayout, concursillo);
@@ -57,7 +60,8 @@ public class Interfaz extends JFrame {
         panelElegir       = new PanelElegir(cardLayout, concursillo);
         panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo);
         panelinfo         = new Panelinfo(cardLayout, concursillo);
-
+        panelFallar         = new PanelFallar(cardLayout, concursillo);
+        
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
         concursillo.add(panelRanking,        RANKING);
@@ -66,7 +70,8 @@ public class Interfaz extends JFrame {
         concursillo.add(panelElegir,         ELEGIR);
         concursillo.add(panelIniciarSesion,  INICIARSESION);
         concursillo.add(panelinfo,           INFO);
-
+        concursillo.add(panelFallar,           FALLAR);
+        
         setContentPane(concursillo);
         cardLayout.show(concursillo, INICIO);
     }
