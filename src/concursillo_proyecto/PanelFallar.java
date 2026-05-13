@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class PanelFallar extends JPanel {
 
@@ -15,6 +17,7 @@ public class PanelFallar extends JPanel {
 	public JTextField CuantasAcertadas;
 	public JButton VerRanking;
 	public JButton SalirFallar;
+	public JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -24,13 +27,15 @@ public class PanelFallar extends JPanel {
 		setLayout(null);
 		
 		FallarOGanar = new JTextField();
+		FallarOGanar.setEditable(false);
 		FallarOGanar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		FallarOGanar.setBackground(new Color(253, 247, 130));
+		FallarOGanar.setBackground(new Color(255, 255, 255));
 		FallarOGanar.setBounds(113, 32, 217, 73);
 		add(FallarOGanar);
 		FallarOGanar.setColumns(10);
 		
 		CuantasAcertadas = new JTextField();
+		CuantasAcertadas.setEditable(false);
 		CuantasAcertadas.setBounds(50, 144, 348, 48);
 		add(CuantasAcertadas);
 		CuantasAcertadas.setColumns(10);
@@ -44,9 +49,13 @@ public class PanelFallar extends JPanel {
 		SalirFallar = new JButton("Salir");
 		SalirFallar.setBounds(174, 247, 89, 23);
 		add(SalirFallar);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PanelFallar.class.getResource("/resource/background-chills.png")));
+		lblNewLabel.setBounds(0, 0, 450, 300);
+		add(lblNewLabel);
 		SalirFallar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
 		
 
 	}
-
 }

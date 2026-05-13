@@ -32,28 +32,28 @@ public class PanelIniciarSesion extends JPanel {
 
         lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/iniciarsesion (1).png")));
-        lblNewLabel.setBounds(154, 13, 180, 143);
+        lblNewLabel.setBounds(163, 11, 180, 143);
         add(lblNewLabel);
 
         NombreIniciarSesion = new JTextField();
         NombreIniciarSesion.setText("Nombre");
-        NombreIniciarSesion.setBounds(141, 249, 86, 20);
+        NombreIniciarSesion.setBounds(140, 249, 86, 20);
         NombreIniciarSesion.setColumns(10);
         add(NombreIniciarSesion);
 
         ContraseñaIniciarSesion = new JTextField();
         ContraseñaIniciarSesion.setText("Contraseña");
-        ContraseñaIniciarSesion.setBounds(141, 296, 86, 20);
+        ContraseñaIniciarSesion.setBounds(140, 296, 86, 20);
         ContraseñaIniciarSesion.setColumns(10);
         add(ContraseñaIniciarSesion);
 
         NombreRellenar = new JTextField();
-        NombreRellenar.setBounds(260, 249, 86, 20);
+        NombreRellenar.setBounds(272, 249, 86, 20);
         NombreRellenar.setColumns(10);
         add(NombreRellenar);
 
         ContraseñaRellenar = new JTextField();
-        ContraseñaRellenar.setBounds(260, 296, 86, 20);
+        ContraseñaRellenar.setBounds(272, 296, 86, 20);
         ContraseñaRellenar.setColumns(10);
         add(ContraseñaRellenar);
         
@@ -64,14 +64,14 @@ public class PanelIniciarSesion extends JPanel {
         add(Salir3);
         
         btnIniciarSesion = new JButton("Iniciar sesión");
-        btnIniciarSesion.setBounds(192, 186, 117, 41);
+        btnIniciarSesion.setBounds(191, 185, 117, 41);
         btnIniciarSesion.addActionListener(e -> cardLayout.show(concursillo, Interfaz.PREGUNTAS));
         add(Salir3);
         
         add(btnIniciarSesion);
         
                 lblNewLabel_1 = new JLabel("");
-                lblNewLabel_1.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/FondoAzul.png")));
+                lblNewLabel_1.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/azuloscuronébula.jpg")));
                 lblNewLabel_1.setBounds(0, 167, 506, 204);
                 add(lblNewLabel_1);
     }

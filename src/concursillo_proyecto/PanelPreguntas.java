@@ -23,49 +23,64 @@ public class PanelPreguntas extends JPanel {
     public JButton VerDinero;
     public JButton VerInfo;
     public JLabel lblNewLabel;
-    public JLabel lblNewLabel_1;
+    private JLabel fondo_chill;
+    public JTextField NombrePreguntas;
+    public JTextField NivelPreguntas;
+
+    
 
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
-        setBounds(100, 100, 506, 355);
+        setBounds(0, 0, 506, 361);
         setLayout(null);
 
+        
         Opcion_A = new JButton("A) Honkai");
         Opcion_A.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	
         	}
         });
+        
+        NivelPreguntas = new JTextField();
+        NivelPreguntas.setBounds(244, 15, 86, 20);
+        add(NivelPreguntas);
+        NivelPreguntas.setColumns(10);
+        
+        NombrePreguntas = new JTextField();
+        NombrePreguntas.setBounds(116, 15, 86, 20);
+        add(NombrePreguntas);
+        NombrePreguntas.setColumns(10);
         Opcion_A.setBackground(new Color(160, 254, 219));
-        Opcion_A.setBounds(28, 247, 175, 23);
+        Opcion_A.setBounds(56, 247, 175, 23);
         add(Opcion_A);
 
         Opcion_B = new JButton("B) Un gacha de nintendo");
         Opcion_B.setBackground(new Color(160, 254, 219));
-        Opcion_B.setBounds(247, 247, 175, 23);
+        Opcion_B.setBounds(271, 247, 175, 23);
         add(Opcion_B);
 
         Opcion_C = new JButton("C) Genshin");
         Opcion_C.setBackground(new Color(160, 254, 219));
-        Opcion_C.setBounds(28, 281, 175, 23);
+        Opcion_C.setBounds(56, 281, 175, 23);
         add(Opcion_C);
 
         Opcion_D = new JButton("D) Ninguno, es de fracasados");
         Opcion_D.setBackground(new Color(160, 254, 219));
-        Opcion_D.setBounds(247, 281, 175, 23);
+        Opcion_D.setBounds(271, 281, 175, 23);
         add(Opcion_D);
 
         Pregunta = new JTextField();
         Pregunta.setEditable(false);
         Pregunta.setBackground(new Color(160, 254, 219));
         Pregunta.setText("Si dabbido jugara un gacha por lo que sea cual jugaria");
-        Pregunta.setBounds(56, 205, 337, 31);
+        Pregunta.setBounds(85, 185, 337, 31);
         Pregunta.setColumns(10);
         add(Pregunta);
 
         ImagenConcursillo = new JLabel("");
         ImagenConcursillo.setIcon(new ImageIcon(getClass().getResource("/resource/ConcursilloLogo.png")));
-        ImagenConcursillo.setBounds(166, 114, 85, 80);
+        ImagenConcursillo.setBounds(208, 83, 85, 80);
         add(ImagenConcursillo);
 
         ComodinProteccion = new JButton("");
@@ -77,7 +92,7 @@ public class PanelPreguntas extends JPanel {
         ComodinLlamada.setIcon(new ImageIcon(getClass().getResource("/resource/llamada.png")));
         ComodinLlamada.setBounds(417, 11, 25, 24);
         add(ComodinLlamada);
-
+        
         ComodinDescartarOpcion = new JButton("");
         ComodinDescartarOpcion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -105,18 +120,18 @@ public class PanelPreguntas extends JPanel {
         	}
         });
         VerInfo.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/informacion_pequeno.png")));
-        VerInfo.setBounds(467, 52, 25, 24);
-        VerInfo.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INFO));
+        VerInfo.setBounds(10, 11, 25, 24);
         add(VerInfo);
         
         lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/AzulMarino.png")));
+        lblNewLabel.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/azuloscuronébula.jpg")));
         lblNewLabel.setBounds(0, 0, 506, 41);
         add(lblNewLabel);
         
-        lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/AzulMarino3.png")));
-        lblNewLabel_1.setBounds(460, 39, 46, 316);
-        add(lblNewLabel_1);
+        fondo_chill = new JLabel("");
+        fondo_chill.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/background-chills.png")));
+        fondo_chill.setBounds(0, 39, 506, 322);
+        add(fondo_chill);
     }
+    
 }
