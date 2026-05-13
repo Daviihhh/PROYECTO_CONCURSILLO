@@ -23,35 +23,38 @@ public class PanelRanking extends JPanel {
     public JLabel lblNewLabel_6;
 
     public PanelRanking(CardLayout cardLayout, JPanel contenedor) {
-        setBorder(new BevelBorder(BevelBorder.LOWERED,
-                new Color(0, 0, 64), new Color(0, 0, 64),
-                new Color(0, 0, 64), new Color(0, 0, 64)));
-        setForeground(new Color(253, 247, 130));
         setBackground(new Color(253, 247, 130));
+        setBounds(0, 0, 506, 361);
         setLayout(null);
 
+
         top1 = new JTextField();
+        top1.setEditable(false);
         top1.setBackground(Color.WHITE);
         top1.setBounds(93, 117, 219, 20);
         top1.setColumns(10);
         add(top1);
 
         top2 = new JTextField();
+        top2.setEditable(false);
         top2.setColumns(10);
         top2.setBounds(93, 155, 219, 20);
         add(top2);
 
         top3 = new JTextField();
+        top3.setEditable(false);
         top3.setColumns(10);
         top3.setBounds(93, 193, 219, 20);
         add(top3);
 
         top4 = new JTextField();
+        top4.setEditable(false);
         top4.setColumns(10);
         top4.setBounds(93, 233, 219, 20);
         add(top4);
 
         top5 = new JTextField();
+        top5.setEditable(false);
         top5.setColumns(10);
         top5.setBounds(93, 272, 219, 20);
         add(top5);
@@ -80,7 +83,7 @@ public class PanelRanking extends JPanel {
         add(lblNewLabel);
 
         lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/AzulMarino.png")));
+        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
         lblNewLabel_2.setBounds(0, 0, 506, 41);
         add(lblNewLabel_2);
 

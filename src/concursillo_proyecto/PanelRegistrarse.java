@@ -74,7 +74,7 @@ public class PanelRegistrarse extends JPanel {
 
         // Fondo al final para que quede detrás
         FondoAzul = new JLabel("");
-        FondoAzul.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/FondoAzul.png")));
+        FondoAzul.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/azuloscuronébula.jpg")));
         FondoAzul.setBounds(0, 148, 506, 213);
         add(FondoAzul);
     }

@@ -49,7 +49,7 @@ public class PanelElegir extends JPanel {
                 add(SalirElegir);
         
                 FondoCrearCuenta = new JLabel("");
-                FondoCrearCuenta.setIcon(new ImageIcon(PanelElegir.class.getResource("/resource/FondoAzul.png")));
+                FondoCrearCuenta.setIcon(new ImageIcon(PanelElegir.class.getResource("/resource/azuloscuronébula.jpg")));
                 FondoCrearCuenta.setBounds(0, 177, 506, 184);
                 add(FondoCrearCuenta);
         

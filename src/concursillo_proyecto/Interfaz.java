@@ -1,3 +1,4 @@
+
 package concursillo_proyecto;
 import javax.swing.*;
 import java.awt.*;
@@ -48,10 +49,9 @@ public class Interfaz extends JFrame {
         cardLayout = new CardLayout();
         concursillo = new JPanel(cardLayout);
 
-        panelInicio = new PanelInicio(cardLayout, concursillo);
-        panelInicio.FondoAzull.setBounds(0, 0, 159, 361);
-        panelInicio.InformacionJuego.setFont(new Font("Tahoma", Font.PLAIN, 9));
 
+        
+        panelInicio = new PanelInicio(cardLayout, concursillo);
         panelPreguntas    = new PanelPreguntas(cardLayout, concursillo);
         panelRanking      = new PanelRanking(cardLayout, concursillo);
         panelRegistrarse      = new PanelRegistrarse(cardLayout, concursillo);
@@ -73,7 +73,6 @@ public class Interfaz extends JFrame {
 
         setContentPane(concursillo);
         cardLayout.show(concursillo, INICIO);
-
         
         panelRanking.actualizarRanking();
     }

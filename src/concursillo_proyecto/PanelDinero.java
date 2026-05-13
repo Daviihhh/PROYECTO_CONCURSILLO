@@ -130,7 +130,7 @@ public class PanelDinero extends JPanel {
         add(FondoAzul2);
         
                 FondoAzul1 = new JLabel("");
-                FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/AzulMarino2.png")));
+                FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
                 FondoAzul1.setBounds(0, 0, 506, 37);
                 add(FondoAzul1);
     }
