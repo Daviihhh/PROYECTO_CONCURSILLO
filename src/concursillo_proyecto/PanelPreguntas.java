@@ -42,7 +42,7 @@ public class PanelPreguntas extends JPanel {
     private GestionMongoDB gestion;
 
     public JButton VerInfo;
-    public JLabel lblNewLabel;
+    public JLabel banner_nebula;
 
     public JLabel lblNewLabel_1;
     
@@ -54,10 +54,23 @@ public class PanelPreguntas extends JPanel {
     public JTextField NivelPreguntas;
     
 
+    private boolean comodinLlamadaUsado = false;
+    private javax.swing.Timer timerLlamada;
+    public JLabel bloqueTimer;
+    
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
+        
+        
+        // El label del timer
+        bloqueTimer = new JLabel("");
+        bloqueTimer.setBounds(412, 40, 100, 20);
+        bloqueTimer.setFont(new Font("Arial", Font.BOLD, 14));
+        bloqueTimer.setForeground(new Color(0, 0, 64));
+        add(bloqueTimer);
+        
         
         gestion = new GestionMongoDB();
         gestion.guardarTema("Juegos");
@@ -185,20 +198,37 @@ public class PanelPreguntas extends JPanel {
         add(VerDinero);
 
         
-        VerInfo = new JButton("");
-        VerInfo.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		//metodoverdinero??
-        	}
-        });
+        VerInfo = new JButton("") {
+            @Override
+            public JToolTip createToolTip() {
+                JToolTip tooltip = super.createToolTip();
+                tooltip.setBackground(new Color(255, 255, 204));
+                tooltip.setForeground(Color.BLACK);
+                tooltip.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                tooltip.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 64), 1));
+                return tooltip;
+            }
+        };
+
+        VerInfo.setToolTipText(
+            "<html>" +
+            "<b>Reglas del Concursillo:</b><br>" +
+            "- Escudo: te protege de una respuesta incorrecta.<br>" +
+            "- Llamada: tienes 60 segundos de ayuda.<br>" +
+            "- Descartar: elimina una opción incorrecta.<br>" +
+            "- Cada comodín solo se puede usar una vez." +
+            "</html>"
+        );
+        
+        
         VerInfo.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/informacion_pequeno.png")));
         VerInfo.setBounds(10, 11, 25, 24);
         add(VerInfo);
         
-        lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/azuloscuronébula.jpg")));
-        lblNewLabel.setBounds(0, 0, 506, 41);
-        add(lblNewLabel);
+        banner_nebula = new JLabel("");
+        banner_nebula.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/azuloscuronébula.jpg")));
+        banner_nebula.setBounds(0, 0, 506, 41);
+        add(banner_nebula);
         
 
 
@@ -215,10 +245,12 @@ public class PanelPreguntas extends JPanel {
 
         if (texto.equals(preguntaActual.getCorrecta())) {
             System.out.println("Correcto");
+            ocultarTimer(); // <-- añadir aquí
             gestion.siguientePregunta();
             cargarPregunta();
         } else {
             System.out.println("Incorrecto pero protegido por el escudo");
+            ocultarTimer(); // <-- añadir aquí
             JOptionPane.showMessageDialog(this, "¡El escudo te ha protegido!");
             escudoActivado = false;
             boton.setVisible(false);
@@ -245,28 +277,56 @@ public class PanelPreguntas extends JPanel {
 	}
 	
 	int segundos = 0;
+	
 	private void comodinLlamada() {
-		System.out.println("COMIENZA LA LLAMADA");
-		Timer timer = new Timer();
-        
-        TimerTask tarea = new TimerTask() {
-            @Override
-            public void run() {
-                segundos++; // Incrementamos el contador
-                System.out.println("Segundos transcurridos: " + segundos);
-                if (segundos >= 60) {
-                    System.out.println("¡Tiempo cumplido! Deteniendo...");
-                    timer.cancel(); // Esto apaga el timer por completo
-                }
-            }
-        };
-        
-        // 1000 --> ms (1 segundo = 1000 ms) | 0 --> retraso en iniciar la acción
-        timer.scheduleAtFixedRate(tarea, 0, 1000);
+	    if (comodinLlamadaUsado) return;
+	    comodinLlamadaUsado = true;
+	    ComodinLlamada.setEnabled(false);
+
+	    JOptionPane.showMessageDialog(this,
+	        "¡Tienes 1 minuto para realizar tu llamada!\nEl temporizador empieza ahora.",
+	        "Comodín Llamada",
+	        JOptionPane.INFORMATION_MESSAGE);
+
+	    final int[] segundosRestantes = {60};
+
+	    timerLlamada = new javax.swing.Timer(1000, null);
+	    timerLlamada.addActionListener(e -> {
+	        segundosRestantes[0]--;
+	        bloqueTimer.setText("Llamada: " + segundosRestantes[0] + "s");
+
+	        if (segundosRestantes[0] <= 10) {
+	            bloqueTimer.setForeground(Color.RED);
+	        }
+
+	        if (segundosRestantes[0] <= 0) {
+	            timerLlamada.stop();
+	            bloqueTimer.setText("¡Tiempo!");
+	            JOptionPane.showMessageDialog(null,
+	                "¡Se acabó el tiempo de llamada!",
+	                "Comodín Llamada",
+	                JOptionPane.WARNING_MESSAGE);
+	        }
+	    });
+	    timerLlamada.start();
+	}
+	
+	
+	// La llamada deja de funcionar cuando respondes una respuesta
+	private void ocultarTimer() {
+	    if (timerLlamada != null) {
+	        timerLlamada.stop();
+	        timerLlamada = null;
+	    }
+	    bloqueTimer.setText("");
+	    bloqueTimer.setForeground(new Color(0, 0, 64)); // resetea el color rojo si estaba
 	}
 	
 	// PON esto:
 	private void cargarPregunta() {
+		
+		//al cambiar pregunta eltimer desaparece
+		ocultarTimer();
 	    preguntaActual = gestion.getPreguntaActual();
 	    if (preguntaActual == null) {
 	        JOptionPane.showMessageDialog(this, "¡Has terminado el concursillo!");
@@ -292,9 +352,12 @@ public class PanelPreguntas extends JPanel {
 		Opcion_D.addActionListener(listenerOpciones);
 	}
 	
+	
+	// Cambio este metodo para que el escudo se desactive cuando clickes cualquier respuesta
 	private void comprobarRespuesta(JButton boton) {
 	    if (escudoActivado) {
 	        comodinEscudo(boton);
+	        ocultarTimer(); // añadir aqui
 	        return;
 	    }
 
@@ -304,8 +367,10 @@ public class PanelPreguntas extends JPanel {
 	        gestion.siguientePregunta();
 	        cargarPregunta();
 	        cajasRespuestaVisibles();
+	        ocultarTimer(); // añadir aqui
 	    } else {
 	        System.out.println("Incorrecto");
+	        ocultarTimer(); // añadir aqui
 	    }
 	}
 	
