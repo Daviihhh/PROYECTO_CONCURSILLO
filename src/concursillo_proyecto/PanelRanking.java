@@ -19,7 +19,7 @@ public class PanelRanking extends JPanel {
     public JTextField NombreUser;
     public JTextArea Usuariotexto;
     public JLabel lblNewLabel;
-    public JLabel lblNewLabel_2;
+    public JLabel banner_nebula;
     public JLabel lblNewLabel_6;
 
     public PanelRanking(CardLayout cardLayout, JPanel contenedor) {
@@ -82,10 +82,10 @@ public class PanelRanking extends JPanel {
         lblNewLabel.setBounds(0, 34, 329, 316);
         add(lblNewLabel);
 
-        lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
-        lblNewLabel_2.setBounds(0, 0, 506, 41);
-        add(lblNewLabel_2);
+        banner_nebula = new JLabel("");
+        banner_nebula.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
+        banner_nebula.setBounds(0, 0, 506, 41);
+        add(banner_nebula);
 
         lblNewLabel_6 = new JLabel("");
         lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_banner.png")));

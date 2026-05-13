@@ -16,6 +16,7 @@ public class Interfaz extends JFrame {
     public static final String INICIARSESION  = "INICIARSESION";
     public static final String INFO           = "INFO";
     public static final String ELEGIRTEMATICA           = "ELEGIRTEMATICA";
+    public static final String FALLAR           = "FALLAR";
 
     private CardLayout cardLayout;
     private JPanel concursillo;
@@ -29,6 +30,7 @@ public class Interfaz extends JFrame {
     public PanelIniciarSesion panelIniciarSesion;
     public Panelinfo panelinfo;
     public PanelElegirTematica panelelegirtematica;
+    public PanelFallar panelFallar;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -60,6 +62,8 @@ public class Interfaz extends JFrame {
         panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo);
         panelinfo         = new Panelinfo(cardLayout, concursillo);
         panelelegirtematica         = new PanelElegirTematica(cardLayout, concursillo);
+        panelFallar         = new PanelFallar(cardLayout, concursillo);
+        
 
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
@@ -70,6 +74,7 @@ public class Interfaz extends JFrame {
         concursillo.add(panelIniciarSesion,  INICIARSESION);
         concursillo.add(panelinfo,           INFO);
         concursillo.add(panelelegirtematica,           ELEGIRTEMATICA);
+        concursillo.add(panelFallar,           FALLAR);
 
         setContentPane(concursillo);
         cardLayout.show(concursillo, INICIO);

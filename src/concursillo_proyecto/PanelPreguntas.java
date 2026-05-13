@@ -28,7 +28,7 @@ public class PanelPreguntas extends JPanel {
     public JButton Opcion_B;
     public JButton Opcion_C;
     public JButton Opcion_D;
-    public JTextField Pregunta;
+    public JTextArea Pregunta;
     public JLabel ImagenConcursillo;
     public JButton ComodinProteccion;
     public JButton ComodinLlamada;
@@ -74,6 +74,8 @@ public class PanelPreguntas extends JPanel {
         	}
         });
         
+
+        
         NivelPreguntas = new JTextField();
         NivelPreguntas.setBounds(244, 15, 86, 20);
         add(NivelPreguntas);
@@ -118,19 +120,22 @@ public class PanelPreguntas extends JPanel {
         Opcion_D.setBounds(271, 281, 175, 23);
         add(Opcion_D);
 
-        Pregunta = new JTextField();
+        
+        
+        Pregunta = new JTextArea();
         Pregunta.setEditable(false);
         Pregunta.setBackground(new Color(160, 254, 219));
 
         Pregunta.setText("");
+        Pregunta.setLineWrap(true);
+        Pregunta.setWrapStyleWord(true); //Para que corte las palabras no las letras
 
-        Pregunta.setBounds(85, 185, 337, 31);
-        Pregunta.setColumns(10);
+        Pregunta.setBounds(100, 167, 300, 49);
         add(Pregunta);
 
         ImagenConcursillo = new JLabel("");
         ImagenConcursillo.setIcon(new ImageIcon(getClass().getResource("/resource/ConcursilloLogo.png")));
-        ImagenConcursillo.setBounds(208, 83, 85, 80);
+        ImagenConcursillo.setBounds(207, 66, 85, 80);
         add(ImagenConcursillo);
 
         ComodinProteccion = new JButton("");
@@ -310,5 +315,4 @@ public class PanelPreguntas extends JPanel {
         Opcion_C.setVisible(true);
         Opcion_D.setVisible(true);
 	}
-
 }
