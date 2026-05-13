@@ -22,12 +22,10 @@ public class PanelRanking extends JPanel {
     public JLabel lblNewLabel_6;
 
     public PanelRanking(CardLayout cardLayout, JPanel contenedor) {
-        setBorder(new BevelBorder(BevelBorder.LOWERED,
-                new Color(0, 0, 64), new Color(0, 0, 64),
-                new Color(0, 0, 64), new Color(0, 0, 64)));
-        setForeground(new Color(253, 247, 130));
         setBackground(new Color(253, 247, 130));
+        setBounds(0, 0, 506, 361);
         setLayout(null);
+
 
         top1 = new JTextField();
         top1.setBackground(Color.WHITE);
@@ -79,7 +77,7 @@ public class PanelRanking extends JPanel {
         add(lblNewLabel);
 
         lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/AzulMarino.png")));
+        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
         lblNewLabel_2.setBounds(0, 0, 506, 41);
         add(lblNewLabel_2);
 

@@ -27,7 +27,7 @@ public class Panelinfo extends JPanel {
         add(InfoFoto);
 
         fondoInfo = new JLabel("New label");
-        fondoInfo.setIcon(new ImageIcon(Panelinfo.class.getResource("/resource/Otrofondo.png")));
+        fondoInfo.setIcon(new ImageIcon(Panelinfo.class.getResource("/resource/azuloscuronébula.jpg")));
         fondoInfo.setBounds(0, 0, 160, 361);
         add(fondoInfo);
         
