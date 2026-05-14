@@ -17,10 +17,13 @@ public class PanelInicio extends JPanel {
     public JLabel FondoAzull;
     public JButton VerRankingInicio;
     private JLabel fondoInicio;
+    private PanelRanking panelRanking;
 
 
-    public PanelInicio(CardLayout cardLayout, JPanel contenedor) {
-        setBackground(new Color(253, 247, 130));
+    public PanelInicio(CardLayout cardLayout, JPanel contenedor, PanelRanking panelRanking) {
+    	this.panelRanking = panelRanking;
+    	
+    	setBackground(new Color(253, 247, 130));
         setLayout(null);
         setBounds(0, 0, 506, 361);
 
@@ -30,13 +33,15 @@ public class PanelInicio extends JPanel {
 
         NuevaPartida.setBounds(9, 109, 150, 23);
 
-        NuevaPartida.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIR));
-        
+        NuevaPartida.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIR));        
                 
-                VerRankingInicio = new JButton("Ver Ranking");
-                VerRankingInicio.setBounds(9, 177, 150, 23);
-                VerRankingInicio.addActionListener(e -> cardLayout.show(contenedor, Interfaz.RANKING));
-                add(VerRankingInicio);
+        VerRankingInicio = new JButton("Ver Ranking");
+        VerRankingInicio.setBounds(9, 177, 150, 23);
+        VerRankingInicio.addActionListener(e -> {
+              panelRanking.actualizarRanking();
+              cardLayout.show(contenedor, Interfaz.RANKING);
+        });
+        add(VerRankingInicio);
         add(NuevaPartida);
 
         InformacionJuego = new JButton("Informacion Juego");

@@ -45,7 +45,10 @@ public class PanelFallar extends JPanel {
 		VerRanking = new JButton("Ver Ranking");
 		VerRanking.setBounds(183, 261, 131, 23);
 		add(VerRanking);
-		VerRanking.addActionListener(e -> cardLayout.show(contenedor, Interfaz.RANKING));
+		VerRanking.addActionListener(e -> {
+		    panelRanking.actualizarRanking();
+		    cardLayout.show(contenedor, Interfaz.RANKING);
+		});
 		
 		
 		SalirFallar = new JButton("Salir");
@@ -60,12 +63,21 @@ public class PanelFallar extends JPanel {
 		
 	}
 	
-	public void mostrarResultado(boolean haGanado, int puntuacion) {
-	    if (haGanado) {
-	        FallarOGanar.setText("¡HAS GANADO!");
-	    } else {
-	        FallarOGanar.setText("¡HAS PERDIDO!");
+	public void mostrarResultado(String resultado, int puntuacion) {
+		System.out.println("mostrarResultado llamado con: " + resultado + " puntuacion: " + puntuacion);
+	    switch (resultado) {
+	        case "ganar":
+	            FallarOGanar.setText("¡HAS GANADO!");
+	            break;
+	        case "perder":
+	            FallarOGanar.setText("¡HAS PERDIDO!");
+	            break;
+	        case "retirar":
+	            FallarOGanar.setText("¡TE HAS RETIRADO!");
+	            break;
 	    }
 	    CuantasAcertadas.setText("Has acertado " + puntuacion + " de 10 preguntas");
+	    repaint();
+	    revalidate();
 	}
 }

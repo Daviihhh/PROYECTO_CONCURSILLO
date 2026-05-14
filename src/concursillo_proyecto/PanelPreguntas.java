@@ -223,6 +223,14 @@ public class PanelPreguntas extends JPanel {
         );
         Retirarse.addActionListener(e -> {
             SonidoManager.reproducirEfecto("/resource/click_cortao.wav");
+            Usuario usuario = new Usuario(
+                gestion.getNombreUsuarioActual(),
+                gestion.getDniUsuarioActual(),
+                gestion.getContrasenaUsuarioActual(),
+                gestion.getPuntuacion()
+            );
+            gestion.guardarUsuario(usuario);
+            panelFallar.mostrarResultado("retirar", gestion.getPuntuacion());
             cardLayout.show(contenedor, Interfaz.FALLAR);
         });
         add(Retirarse);
@@ -259,6 +267,7 @@ public class PanelPreguntas extends JPanel {
             ocultarTimer();
             gestion.siguientePregunta();
             gestion.sumarPunto();
+            System.out.println("Puntuacion actual: " + gestion.getPuntuacion()); // añade aquí
             cargarPregunta();
         } else {
             System.out.println("Incorrecto pero protegido por el escudo");
@@ -335,14 +344,16 @@ public class PanelPreguntas extends JPanel {
         visiblesOpciones();
         preguntaActual = gestion.getPreguntaActual();
         if (preguntaActual == null) {
+        	int puntuacionFinal = gestion.getPuntuacion();
+        	
             Usuario usuario = new Usuario(
                 gestion.getNombreUsuarioActual(),
                 gestion.getDniUsuarioActual(),
                 gestion.getContrasenaUsuarioActual(),
-                gestion.getPuntuacion()
+                puntuacionFinal
             );
             gestion.guardarUsuario(usuario);
-            panelFallar.mostrarResultado(true, gestion.getPuntuacion());
+            panelFallar.mostrarResultado("ganar", gestion.getPuntuacion());
             cardLayout.show(contenedor, Interfaz.FALLAR);
             return;
         }
@@ -382,17 +393,12 @@ public class PanelPreguntas extends JPanel {
             gestion.siguientePregunta();
             gestion.sumarPunto();
             cargarPregunta();
-        } else {
+        } else { //HAS PERDIDO. NO SE GUARDA NADA
             System.out.println("Incorrecto");
             ocultarTimer();
-            Usuario usuario = new Usuario(
-                gestion.getNombreUsuarioActual(),
-                gestion.getDniUsuarioActual(),
-                gestion.getContrasenaUsuarioActual(),
-                gestion.getPuntuacion()
-            );
-            gestion.guardarUsuario(usuario);
-            panelFallar.mostrarResultado(false, gestion.getPuntuacion());
+            int puntuacionFinal = gestion.getPuntuacion();
+            System.out.println("Puntuacion antes de mostrar: " + gestion.getPuntuacion());
+            panelFallar.mostrarResultado("perder", puntuacionFinal);
             cardLayout.show(contenedor, Interfaz.FALLAR);
         }
     }

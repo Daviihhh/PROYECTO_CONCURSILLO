@@ -113,8 +113,7 @@ public class PanelRegistrarse extends JPanel {
                     return;
                 }
 
-                Usuario usuario = new Usuario(nombre, dni, contrasena, puntuacion);
-                gestion.guardarUsuario(usuario);
+                
                 gestion.setNombreUsuarioActual(nombre);
                 gestion.setDniUsuarioActual(dni);
                 gestion.setContrasenaUsuarioActual(contrasena);

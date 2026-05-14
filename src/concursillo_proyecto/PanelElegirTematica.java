@@ -23,6 +23,7 @@ public class PanelElegirTematica extends JPanel {
     public PanelElegirTematica(CardLayout cardLayout, JPanel contenedor, GestionMongoDB gestion, PanelPreguntas panelPreguntas) {
         
     	this.panelPreguntas = panelPreguntas;
+    	this.gestion = gestion;
     	
         setBackground(new Color(0, 255, 255));
         setBounds(0, 0, 506, 361);
@@ -58,17 +59,6 @@ public class PanelElegirTematica extends JPanel {
         fondo.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/abstract-background.png")));
         fondo.setBounds(0, 51, 506, 310);
         add(fondo);
-
-                                                
-
-	                
-	   // BackgroundMenu
-	   // Botones
-	   btnFutbol = new JButton("⚽ Fútbol");
-	   btnFutbol.setBounds(145, 93, 200, 35);
-	   add(btnFutbol);
-	   btnFutbol.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
-
                 
        menufondo = new JLabel("");
        menufondo.setBounds(100, 78, 292, 253);

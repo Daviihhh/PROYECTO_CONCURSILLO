@@ -216,6 +216,7 @@ public class GestionMongoDB {
 	
 	public void sumarPunto() {
 	    puntuacion++;
+	    System.out.println("Punto sumado, total: " + puntuacion);
 	}
 
 	public int getPuntuacion() {
@@ -243,99 +244,59 @@ public class GestionMongoDB {
 	}
 	
 	public void guardarUsuario(Usuario usuario) {
-
+		 System.out.println("Guardando usuario: " + usuario.getNombre() + " con puntuacion: " + usuario.getPuntuacion());
 	    try {
-
-	        MongoCollection<Document> coleccionUsuarios =
-	            database.getCollection("Usuarios");
-
-	        // Buscar usuario por DNI
-	        Document existente = coleccionUsuarios.find(
-	            new Document("dni", usuario.getDNI())
-	        ).first();
-
-	        // SI NO EXISTE, INSERTAR
-	        if(existente == null) {
-
+	        MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
+	        
+	        // Busca si ya existe el usuario por DNI
+	        Document filtro = new Document("dni", usuario.getDNI());
+	        Document existente = coleccionUsuarios.find(filtro).first();
+	        
+	        System.out.println("Buscando DNI: " + usuario.getDNI());
+	        System.out.println("Documento encontrado: " + existente);
+	        
+	        if (existente == null) {
+	            // No existe, lo inserta nuevo
 	            Document doc = new Document()
 	                .append("nombre", usuario.getNombre())
 	                .append("dni", usuario.getDNI())
 	                .append("contrasena", usuario.getPassword())
 	                .append("puntuacion", usuario.getPuntuacion());
-
 	            coleccionUsuarios.insertOne(doc);
-
-	            System.out.println("Usuario creado");
-
+	            System.out.println("Usuario insertado: " + usuario.getNombre());
 	        } else {
-
-	            // si existe, comparar puntuacion
-	            int puntuacionActual =
-	                existente.getInteger("puntuacion");
-
-	            // Solo actualizar si mejora
-	            if(usuario.getPuntuacion() > puntuacionActual) {
-
-	                coleccionUsuarios.updateOne(
-	                    new Document("dni", usuario.getDNI()),
-	                    new Document("$set",
-	                        new Document("puntuacion",
-	                            usuario.getPuntuacion()
-	                        )
-	                    )
-	                );
-
-	                System.out.println("Nueva mejor puntuacion");
-
-	            } else {
-
-	                System.out.println("La puntuacion no mejora");
+	            // Ya existe, actualiza solo la puntuacion si es mayor
+	            int puntuacionAnterior = existente.getInteger("puntuacion");
+	            if (usuario.getPuntuacion() > puntuacionAnterior) {
+	                Document actualizacion = new Document("$set",
+	                    new Document("puntuacion", usuario.getPuntuacion()));
+	                coleccionUsuarios.updateOne(filtro, actualizacion);
+	                System.out.println("Puntuacion actualizada: " + usuario.getPuntuacion());
 	            }
 	        }
-
-	    } catch(Exception e) {
-
+	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	}
 
 	
 	public ArrayList<Usuario> getOrdenRanking() {
-
-	    MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
-
-	    ArrayList<Document> lista = new ArrayList<>();
-	    coleccionUsuarios.find().into(lista);
+	    // Consulta directamente a MongoDB, no usa la lista en memoria
+	    ArrayList<Document> docs = new ArrayList<>();
+	    database.getCollection("Usuarios").find().into(docs);
 
 	    ArrayList<Usuario> usuarios = new ArrayList<>();
-
-	    // Pasar documentos a usuarios
-	    for (Document doc : lista) {
-
-	        Usuario u = new Usuario(
+	    for (Document doc : docs) {
+	        usuarios.add(new Usuario(
 	            doc.getString("nombre"),
 	            doc.getString("dni"),
 	            doc.getString("contrasena"),
 	            doc.getInteger("puntuacion")
-	        );
-
-	        usuarios.add(u);
+	        ));
 	    }
 
-	    // Ordenar de mayor a menor puntuacion
-	    usuarios.sort((u1, u2) ->
-	        Integer.compare(u2.getPuntuacion(), u1.getPuntuacion())
-	    );
-
-	    // Crear lista top 5
-	    ArrayList<Usuario> rankeds = new ArrayList<>();
-
-	    for(int i = 0; i < 5 && i < usuarios.size(); i++) {
-
-	        rankeds.add(usuarios.get(i));
-	    }
-
-	    return rankeds;
+	    usuarios.sort((a, b) -> b.getPuntuacion() - a.getPuntuacion());
+	    return usuarios;
 	}
 	
 }
