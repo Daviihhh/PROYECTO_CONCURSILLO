@@ -63,8 +63,7 @@ public class PanelPreguntas extends JPanel {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
-        
-        
+       
         // El label del timer
         bloqueTimer = new JLabel("");
         bloqueTimer.setBounds(412, 40, 100, 20);
@@ -88,11 +87,13 @@ public class PanelPreguntas extends JPanel {
 
         
         NivelPreguntas = new JTextField();
+        NivelPreguntas.setEditable(false);
         NivelPreguntas.setBounds(244, 15, 86, 20);
         add(NivelPreguntas);
         NivelPreguntas.setColumns(10);
         
         NombrePreguntas = new JTextField();
+        NombrePreguntas.setEditable(false);
         NombrePreguntas.setBounds(116, 15, 86, 20);
         add(NombrePreguntas);
         NombrePreguntas.setColumns(10);
@@ -209,6 +210,7 @@ public class PanelPreguntas extends JPanel {
                 return tooltip;
             }
         };
+       
 
         VerInfo.setToolTipText(
             "<html>" +
@@ -219,11 +221,38 @@ public class PanelPreguntas extends JPanel {
             "- Cada comodín solo se puede usar una vez." +
             "</html>"
         );
+   
+
         
         
         VerInfo.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/informacion_pequeno.png")));
         VerInfo.setBounds(10, 11, 25, 24);
         add(VerInfo);
+        
+        Retirarse = new JButton("¿Retirarse?") {
+            @Override
+            public JToolTip createToolTip() {
+                JToolTip tooltip = super.createToolTip();
+                tooltip.setBackground(new Color(255, 255, 204));
+                tooltip.setForeground(Color.BLACK);
+                tooltip.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                tooltip.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 64), 1));
+                return tooltip;
+            }
+        };
+
+        Retirarse.setBounds(10, 60, 106, 23);
+        Retirarse.setToolTipText(
+            "<html>" +
+            "<b>Retirate con las preguntas respondidas hasta ahora</b><br>" +
+            "- Conseguiras el dinero de las preguntas respondidas.<br>" +
+            "- Se te eliminará de la partida actual.<br>" +
+            "</html>"
+        );
+        Retirarse.addActionListener(e -> cardLayout.show(contenedor, Interfaz.FALLAR));
+        add(Retirarse);
+        
+ 
         
         banner_nebula = new JLabel("");
         banner_nebula.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/azuloscuronébula.jpg")));
@@ -295,6 +324,7 @@ public class PanelPreguntas extends JPanel {
 	}
 	
 	int segundos = 0;
+	public JButton Retirarse;
 	
 	private void comodinLlamada() {
 	    if (comodinLlamadaUsado) return;

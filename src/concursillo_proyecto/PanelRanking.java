@@ -68,6 +68,7 @@ public class PanelRanking extends JPanel {
         add(salir);
 
         NombreUser = new JTextField();
+        NombreUser.setEditable(false);
         NombreUser.setBounds(410, 11, 86, 20);
         NombreUser.setColumns(10);
         add(NombreUser);
