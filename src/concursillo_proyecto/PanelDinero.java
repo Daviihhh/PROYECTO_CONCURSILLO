@@ -27,7 +27,7 @@ public class PanelDinero extends JPanel {
     public JLabel FondoAzul1;
     public JLabel FondoAzul2;
     private GestionMongoDB gestion;
- // en el constructor:
+    private JLabel fondoDinero;
 
     public PanelDinero(CardLayout cardLayout, JPanel contenedor, GestionMongoDB gestion) {
     	this.gestion = gestion;
@@ -130,13 +130,18 @@ public class PanelDinero extends JPanel {
 
         FondoAzul2 = new JLabel("");
         FondoAzul2.setIcon(new ImageIcon(getClass().getResource("/resource/DINERO.png")));
-        FondoAzul2.setBounds(189, 136, 202, 214);
+        FondoAzul2.setBounds(229, 105, 202, 214);
         add(FondoAzul2);
         
                 FondoAzul1 = new JLabel("");
                 FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
                 FondoAzul1.setBounds(0, 0, 506, 37);
                 add(FondoAzul1);
+                
+                fondoDinero = new JLabel("");
+                fondoDinero.setIcon(new ImageIcon(PanelDinero.class.getResource("/resource/background-chills.png")));
+                fondoDinero.setBounds(0, 32, 506, 329);
+                add(fondoDinero);
     }
     
     public void actualizarPremio(int numeroPregunta) {

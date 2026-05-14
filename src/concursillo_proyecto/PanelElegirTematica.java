@@ -1,5 +1,5 @@
 package concursillo_proyecto;
-
+//aaaa
 import java.awt.CardLayout;
 import java.awt.*;
 import javax.swing.*;
@@ -59,6 +59,27 @@ public class PanelElegirTematica extends JPanel {
         fondo.setBounds(0, 51, 506, 310);
         add(fondo);
 
+                                                
+
+	                
+	   // BackgroundMenu
+	   // Botones
+	   btnFutbol = new JButton("⚽ Fútbol");
+	   btnFutbol.setBounds(145, 93, 200, 35);
+	   add(btnFutbol);
+	   btnFutbol.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
+                
+       menufondo = new JLabel("");
+       menufondo.setBounds(100, 78, 292, 253);
+       add(menufondo);
+       menufondo.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/azul_nebula_menu.png")));
+        
+        JLabel fondoTematica = new JLabel("");
+        fondoTematica.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/abstract-background.png")));
+        fondoTematica.setBounds(0, 51, 506, 310);
+        add(fondoTematica);
+        
         lblNewLabel = new JLabel("SELECIONA TU TEMÁTICA");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 24));

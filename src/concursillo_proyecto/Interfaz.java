@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-//cambi
+
+
+
 
 public class Interfaz extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -33,8 +35,12 @@ public class Interfaz extends JFrame {
     public Panelinfo panelinfo;
     public PanelFallar panelFallar;
     public PanelElegirTematica panelelegirtematica;
+
     
     public GestionMongoDB gestion = new GestionMongoDB();
+
+
+
 
 
     public static void main(String[] args) {
@@ -69,6 +75,18 @@ public class Interfaz extends JFrame {
         panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo, gestion, panelPreguntas, panelDinero, panelRanking);
         panelelegirtematica = new PanelElegirTematica(cardLayout, concursillo, gestion, panelPreguntas);
 
+        panelRegistrarse.Contraseña.setEditable(false);
+        panelRegistrarse.NombreUsuario.setEditable(false);
+        panelRegistrarse.DniUsuario.setEditable(false);
+        panelDinero.textoUsuario.setEditable(false);
+        panelDinero.NombreDelJugador.setEditable(false);
+        panelElegir       = new PanelElegir(cardLayout, concursillo);
+        panelIniciarSesion.ContraseñaIniciarSesion.setEditable(false);
+        panelIniciarSesion.NombreIniciarSesion.setEditable(false);
+        panelinfo         = new Panelinfo(cardLayout, concursillo);
+        
+
+
 
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
@@ -80,13 +98,25 @@ public class Interfaz extends JFrame {
         concursillo.add(panelinfo,           INFO);
         concursillo.add(panelFallar,           FALLAR);      
         concursillo.add(panelelegirtematica,           ELEGIRTEMATICA);
+
+        concursillo.add(panelFallar,           FALLAR);
+
+        setContentPane(concursillo);
+        cardLayout.show(concursillo, INICIO);
+
         
+
         setContentPane(concursillo);
         cardLayout.show(concursillo, 		INICIO);
         
         panelPreguntas.actualizarNombre();
         panelDinero.actualizarNombre();
         panelRanking.actualizarNombre();
+
+
+        panelRanking.actualizarRanking();
+        
+  
 
     }
 }

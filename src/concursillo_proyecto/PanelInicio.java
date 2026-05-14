@@ -11,12 +11,12 @@ public class PanelInicio extends JPanel {
     public JButton NuevaPartida;
     public JButton InformacionJuego;
     public JButton SalirJuego;
-    public JLabel FotoPanelUsuario;
+    public JLabel logo_preguntas;
     public JLabel PreguntaPng;
     public JLabel FotoMenuPrincipal;
     public JLabel FondoAzull;
     public JButton VerRankingInicio;
-    private JLabel lblNewLabel;
+    private JLabel fondoInicio;
 
 
     public PanelInicio(CardLayout cardLayout, JPanel contenedor) {
@@ -31,6 +31,12 @@ public class PanelInicio extends JPanel {
         NuevaPartida.setBounds(9, 109, 150, 23);
 
         NuevaPartida.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIR));
+        
+                
+                VerRankingInicio = new JButton("Ver Ranking");
+                VerRankingInicio.setBounds(9, 177, 150, 23);
+                VerRankingInicio.addActionListener(e -> cardLayout.show(contenedor, Interfaz.RANKING));
+                add(VerRankingInicio);
         add(NuevaPartida);
 
         InformacionJuego = new JButton("Informacion Juego");
@@ -47,10 +53,10 @@ public class PanelInicio extends JPanel {
         SalirJuego.addActionListener(e -> System.exit(0));
         add(SalirJuego);
 
-        FotoPanelUsuario = new JLabel("");
-        FotoPanelUsuario.setIcon(new ImageIcon(getClass().getResource("/resource/LOGO_PANTALLA_INICIO.png")));
-        FotoPanelUsuario.setBounds(217, 108, 237, 144);
-        add(FotoPanelUsuario);
+        logo_preguntas = new JLabel("");
+        logo_preguntas.setIcon(new ImageIcon(getClass().getResource("/resource/LOGO_PANTALLA_INICIO.png")));
+        logo_preguntas.setBounds(217, 108, 237, 144);
+        add(logo_preguntas);
 
         PreguntaPng = new JLabel("");
         PreguntaPng.setIcon(new ImageIcon(getClass().getResource("/resource/Interrogaciones.png")));
@@ -63,26 +69,20 @@ public class PanelInicio extends JPanel {
         FotoMenuPrincipal.setIcon(new ImageIcon(getClass().getResource("/resource/MenuPrincipalPNG.png")));
         FotoMenuPrincipal.setBounds(15, 0, 131, 86);
         add(FotoMenuPrincipal);
-
-        
-        VerRankingInicio = new JButton("Ver Ranking");
-        VerRankingInicio.setBounds(9, 177, 150, 23);
-        VerRankingInicio.addActionListener(e -> cardLayout.show(contenedor, Interfaz.RANKING));
-        add(VerRankingInicio);
         
 
 
 
-        // Fondo al final para que quede detrás
+       
         FondoAzull = new JLabel("");
         FondoAzull.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
         FondoAzull.setBounds(0, 0, 170, 361);
         add(FondoAzull);
         
-        lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(PanelInicio.class.getResource("/resource/background-chills.png")));
-        lblNewLabel.setBounds(169, 0, 337, 361);
-        add(lblNewLabel);
+        fondoInicio = new JLabel("");
+        fondoInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/resource/background-chills.png")));
+        fondoInicio.setBounds(169, 0, 337, 361);
+        add(fondoInicio);
 
     }
 }

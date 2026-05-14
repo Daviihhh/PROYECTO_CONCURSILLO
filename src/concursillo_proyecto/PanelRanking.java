@@ -18,10 +18,16 @@ public class PanelRanking extends JPanel {
     public JButton salir;
     public JTextField NombreUser;
     public JTextArea Usuariotexto;
+
     public JLabel lblNewLabel;
     public JLabel lblNewLabel_2;
     public JLabel lblNewLabel_6;
     private GestionMongoDB gestion;
+
+    public JLabel renderClasificacion;
+    public JLabel banner_nebula;
+    public JLabel imagenTrofeo;
+    private JLabel fondoRanking;
 
     public PanelRanking(CardLayout cardLayout, JPanel contenedor, GestionMongoDB gestion) {
         this.gestion = gestion;
@@ -70,6 +76,7 @@ public class PanelRanking extends JPanel {
         add(salir);
 
         NombreUser = new JTextField();
+        NombreUser.setEditable(false);
         NombreUser.setBounds(410, 11, 86, 20);
         NombreUser.setColumns(10);
         add(NombreUser);
@@ -80,20 +87,25 @@ public class PanelRanking extends JPanel {
         Usuariotexto.setBounds(327, 11, 73, 19);
         add(Usuariotexto);
 
-        lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_redimensionado.png")));
-        lblNewLabel.setBounds(0, 34, 329, 316);
-        add(lblNewLabel);
+        renderClasificacion = new JLabel("");
+        renderClasificacion.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_redimensionadoA.png")));
+        renderClasificacion.setBounds(0, 34, 329, 316);
+        add(renderClasificacion);
 
-        lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
-        lblNewLabel_2.setBounds(0, 0, 506, 41);
-        add(lblNewLabel_2);
+        banner_nebula = new JLabel("");
+        banner_nebula.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
+        banner_nebula.setBounds(0, 0, 506, 41);
+        add(banner_nebula);
 
-        lblNewLabel_6 = new JLabel("");
-        lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_banner.png")));
-        lblNewLabel_6.setBounds(339, 86, 140, 235);
-        add(lblNewLabel_6);
+        imagenTrofeo = new JLabel("");
+        imagenTrofeo.setIcon(new ImageIcon(getClass().getResource("/resource/clasificacion_banner.png")));
+        imagenTrofeo.setBounds(339, 86, 140, 235);
+        add(imagenTrofeo);
+        
+        fondoRanking = new JLabel("");
+        fondoRanking.setIcon(new ImageIcon(PanelRanking.class.getResource("/resource/background-chills.png")));
+        fondoRanking.setBounds(0, 34, 506, 327);
+        add(fondoRanking);
 
     }
     
