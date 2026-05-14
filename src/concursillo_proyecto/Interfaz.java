@@ -79,5 +79,7 @@ public class Interfaz extends JFrame {
         cardLayout.show(concursillo, INICIO);
         
         panelRanking.actualizarRanking();
+        
+  
     }
 }

@@ -58,6 +58,7 @@ public class PanelPreguntas extends JPanel {
     private javax.swing.Timer timerLlamada;
     public JLabel bloqueTimer;
     
+    
     public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
@@ -80,9 +81,6 @@ public class PanelPreguntas extends JPanel {
         Opcion_A.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		comprobarRespuesta(Opcion_A);
-
-       
-        	
 
         	}
         });
@@ -194,7 +192,9 @@ public class PanelPreguntas extends JPanel {
         VerDinero = new JButton("");
         VerDinero.setIcon(new ImageIcon(getClass().getResource("/resource/verDinero.png")));
         VerDinero.setBounds(56, 11, 25, 24);
-        VerDinero.addActionListener(e -> cardLayout.show(contenedor, Interfaz.DINERO));
+        VerDinero.addActionListener(e -> { 
+        	SonidoManager.reproducirEfecto("/resource/click_cortao.wav");
+        	cardLayout.show(contenedor, Interfaz.DINERO);});
         add(VerDinero);
 
         
@@ -237,20 +237,38 @@ public class PanelPreguntas extends JPanel {
         fondoAmarilloPreguntas.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/background-chills.png")));
         fondoAmarilloPreguntas.setBounds(0, 39, 506, 322);
         add(fondoAmarilloPreguntas);
+        
+
+        
+        // El override de la musica, si este panel se hace visible suena la musica de las preguntas, si no es visible suena la del menu
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent e) {
+                SonidoManager.reproducirMusica("/resource/malenia_lofi.wav");
+            }
+            
+            @Override
+            public void componentHidden(java.awt.event.ComponentEvent e) {
+                SonidoManager.reproducirMusica("/resource/DoG_lofi.wav");
+            }
+        });
+
     }
     
+    //Final constructor
+
     
     private void comodinEscudo(JButton boton) {
         String texto = boton.getText();
 
         if (texto.equals(preguntaActual.getCorrecta())) {
             System.out.println("Correcto");
-            ocultarTimer(); // <-- añadir aquí
+            ocultarTimer(); 
             gestion.siguientePregunta();
             cargarPregunta();
         } else {
             System.out.println("Incorrecto pero protegido por el escudo");
-            ocultarTimer(); // <-- añadir aquí
+            ocultarTimer();
             JOptionPane.showMessageDialog(this, "¡El escudo te ha protegido!");
             escudoActivado = false;
             boton.setVisible(false);
