@@ -153,6 +153,7 @@ public class PanelPreguntas extends JPanel {
         ComodinProteccion = new JButton("");
         ComodinProteccion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	SonidoManager.reproducirEfecto("/resource/click_cortao.wav");
                 escudoActivado = true;
                 ComodinProteccion.setEnabled(false);
                 System.out.println("Escudo activado");
@@ -224,7 +225,6 @@ public class PanelPreguntas extends JPanel {
    
 
         
-        
         VerInfo.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/informacion_pequeno.png")));
         VerInfo.setBounds(10, 11, 25, 24);
         add(VerInfo);
@@ -249,7 +249,10 @@ public class PanelPreguntas extends JPanel {
             "- Se te eliminará de la partida actual.<br>" +
             "</html>"
         );
-        Retirarse.addActionListener(e -> cardLayout.show(contenedor, Interfaz.FALLAR));
+        Retirarse.addActionListener(e -> {
+        	SonidoManager.reproducirEfecto("/resource/click_cortao.wav");
+        	cardLayout.show(contenedor, Interfaz.FALLAR);
+        });
         add(Retirarse);
         
  
