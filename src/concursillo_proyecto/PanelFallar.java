@@ -17,7 +17,7 @@ public class PanelFallar extends JPanel {
 	public JTextField CuantasAcertadas;
 	public JButton VerRanking;
 	public JButton SalirFallar;
-	public JLabel lblNewLabel;
+	public JLabel fondoPanelFallar;
 
 	/**
 	 * Create the panel.
@@ -51,10 +51,10 @@ public class PanelFallar extends JPanel {
 		SalirFallar.setBounds(203, 293, 89, 23);
 		add(SalirFallar);
 		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PanelFallar.class.getResource("/resource/background-chills.png")));
-		lblNewLabel.setBounds(0, 0, 506, 361);
-		add(lblNewLabel);
+		fondoPanelFallar = new JLabel("");
+		fondoPanelFallar.setIcon(new ImageIcon(PanelFallar.class.getResource("/resource/background-chills.png")));
+		fondoPanelFallar.setBounds(0, 0, 506, 361);
+		add(fondoPanelFallar);
 		SalirFallar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
 		
 

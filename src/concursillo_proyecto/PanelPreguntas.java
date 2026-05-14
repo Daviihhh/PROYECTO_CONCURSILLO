@@ -49,7 +49,7 @@ public class PanelPreguntas extends JPanel {
     private boolean escudoActivado = false;
 
 
-    private JLabel fondo_chill;
+    private JLabel fondoAmarilloPreguntas;
     public JTextField NombrePreguntas;
     public JTextField NivelPreguntas;
     
@@ -233,10 +233,10 @@ public class PanelPreguntas extends JPanel {
 
 
         cargarPregunta();
-        fondo_chill = new JLabel("");
-        fondo_chill.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/background-chills.png")));
-        fondo_chill.setBounds(0, 39, 506, 322);
-        add(fondo_chill);
+        fondoAmarilloPreguntas = new JLabel("");
+        fondoAmarilloPreguntas.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/background-chills.png")));
+        fondoAmarilloPreguntas.setBounds(0, 39, 506, 322);
+        add(fondoAmarilloPreguntas);
     }
     
     

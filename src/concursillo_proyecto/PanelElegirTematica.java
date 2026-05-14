@@ -21,37 +21,47 @@ public class PanelElegirTematica extends JPanel {
         setBounds(0, 0, 506, 361);
         setLayout(null);
                                                 
-                                                        btnPeliculas = new JButton("🎬 Películas");
-                                                        btnPeliculas.setBounds(145, 277, 200, 35);
-                                                        add(btnPeliculas);
-                                        
-                                                btnHistoria = new JButton("📜 Historia");
-                                                btnHistoria.setBounds(145, 231, 200, 35);
-                                                add(btnHistoria);
-                                
-                                        btnMusica = new JButton("🎵 Música");
-                                        btnMusica.setBounds(145, 185, 200, 35);
-                                        add(btnMusica);
-                        
-                                btnJuegos = new JButton("🎮 Juegos");
-                                btnJuegos.setBounds(145, 139, 200, 35);
-                                add(btnJuegos);
+	    btnPeliculas = new JButton("🎬 Películas");
+	    btnPeliculas.setBounds(145, 277, 200, 35);
+	    add(btnPeliculas);
+        btnPeliculas.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
+	                                        
+	    btnHistoria = new JButton("📜 Historia");
+	    btnHistoria.setBounds(145, 231, 200, 35);
+	    add(btnHistoria);
+        btnHistoria.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
+	                                
+	    btnMusica = new JButton("🎵 Música");
+	    btnMusica.setBounds(145, 185, 200, 35);
+	    add(btnMusica);
+	    btnMusica.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
+	                        
+	   btnJuegos = new JButton("🎮 Juegos");
+	   btnJuegos.setBounds(145, 139, 200, 35);
+	   add(btnJuegos);
+	   btnJuegos.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
+	                
+	   // BackgroundMenu
+	   // Botones
+	   btnFutbol = new JButton("⚽ Fútbol");
+	   btnFutbol.setBounds(145, 93, 200, 35);
+	   add(btnFutbol);
+	   btnFutbol.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+
                 
-                        // Botones dentro de BackgroundMenu
-                        // Coordenadas relativas al BackgroundMenu, no al panel principal
-                        btnFutbol = new JButton("⚽ Fútbol");
-                        btnFutbol.setBounds(145, 93, 200, 35);
-                        add(btnFutbol);
-                
-                menufondo = new JLabel("");
-                menufondo.setBounds(100, 78, 292, 253);
-                add(menufondo);
-                menufondo.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/azul_nebula_menu.png")));
+       menufondo = new JLabel("");
+       menufondo.setBounds(100, 78, 292, 253);
+       add(menufondo);
+       menufondo.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/azul_nebula_menu.png")));
         
-        JLabel fondo = new JLabel("");
-        fondo.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/abstract-background.png")));
-        fondo.setBounds(0, 51, 506, 310);
-        add(fondo);
+        JLabel fondoTematica = new JLabel("");
+        fondoTematica.setIcon(new ImageIcon(PanelElegirTematica.class.getResource("/resource/abstract-background.png")));
+        fondoTematica.setBounds(0, 51, 506, 310);
+        add(fondoTematica);
         
         lblNewLabel = new JLabel("SELECIONA TU TEMÁTICA");
         lblNewLabel.setForeground(new Color(255, 255, 255));

@@ -16,7 +16,7 @@ public class PanelInicio extends JPanel {
     public JLabel FotoMenuPrincipal;
     public JLabel FondoAzull;
     public JButton VerRankingInicio;
-    private JLabel background_chill;
+    private JLabel fondoInicio;
 
 
     public PanelInicio(CardLayout cardLayout, JPanel contenedor) {
@@ -79,10 +79,10 @@ public class PanelInicio extends JPanel {
         FondoAzull.setBounds(0, 0, 170, 361);
         add(FondoAzull);
         
-        background_chill = new JLabel("");
-        background_chill.setIcon(new ImageIcon(PanelInicio.class.getResource("/resource/background-chills.png")));
-        background_chill.setBounds(169, 0, 337, 361);
-        add(background_chill);
+        fondoInicio = new JLabel("");
+        fondoInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/resource/background-chills.png")));
+        fondoInicio.setBounds(169, 0, 337, 361);
+        add(fondoInicio);
 
     }
 }

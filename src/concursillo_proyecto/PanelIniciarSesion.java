@@ -16,24 +16,25 @@ public class PanelIniciarSesion extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public JLabel lblNewLabel;
+    public JLabel renderInicioSesion;
     public JTextField NombreIniciarSesion;
     public JTextField ContraseñaIniciarSesion;
     public JTextField NombreRellenar;
     public JTextField ContraseñaRellenar;
-    public JLabel lblNewLabel_1;
+    public JLabel fondoInicioSesionAzul;
     public JButton Salir3;
     public JButton btnIniciarSesion;
+    private JLabel fondoInicioSesionAmarillo;
 
     public PanelIniciarSesion(CardLayout cardLayout, JPanel concursillo) {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
 
-        lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/iniciarsesion (1).png")));
-        lblNewLabel.setBounds(163, 11, 180, 143);
-        add(lblNewLabel);
+        renderInicioSesion = new JLabel("");
+        renderInicioSesion.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/iniciarsesion (1).png")));
+        renderInicioSesion.setBounds(163, 11, 180, 143);
+        add(renderInicioSesion);
 
         NombreIniciarSesion = new JTextField();
         NombreIniciarSesion.setText("Nombre");
@@ -66,15 +67,20 @@ public class PanelIniciarSesion extends JPanel {
         
         btnIniciarSesion = new JButton("Iniciar sesión");
         btnIniciarSesion.setBounds(191, 185, 117, 41);
-        btnIniciarSesion.addActionListener(e -> cardLayout.show(concursillo, Interfaz.PREGUNTAS));
+        btnIniciarSesion.addActionListener(e -> cardLayout.show(concursillo, Interfaz.ELEGIRTEMATICA));
         add(Salir3);
         
         add(btnIniciarSesion);
         
-                lblNewLabel_1 = new JLabel("");
-                lblNewLabel_1.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/azuloscuronébula.jpg")));
-                lblNewLabel_1.setBounds(0, 167, 506, 204);
-                add(lblNewLabel_1);
+                fondoInicioSesionAzul = new JLabel("");
+                fondoInicioSesionAzul.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/azuloscuronébula.jpg")));
+                fondoInicioSesionAzul.setBounds(0, 167, 506, 204);
+                add(fondoInicioSesionAzul);
+                
+                fondoInicioSesionAmarillo = new JLabel("");
+                fondoInicioSesionAmarillo.setIcon(new ImageIcon(PanelIniciarSesion.class.getResource("/resource/background-chills.png")));
+                fondoInicioSesionAmarillo.setBounds(-13, -136, 519, 313);
+                add(fondoInicioSesionAmarillo);
 
     }
 }

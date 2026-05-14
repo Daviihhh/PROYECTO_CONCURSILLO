@@ -11,8 +11,9 @@ public class PanelRegistrarse extends JPanel {
     public JTextField IntroducirNombre, CuadrotextoApellidos, CuadrotextoDNI;
     public JFormattedTextField CuadrotextoNombre;
     public JTextPane NombreUsuario, DniUsuario, Contraseña;
-    public JLabel ImagenUser, FondoAzul;
+    public JLabel ImagenUser, FondoAzulRegistro;
     public JButton Salir2, BotonEntrar;
+    private JLabel fondoAmarilloRegistro;
 
     public PanelRegistrarse(CardLayout cardLayout, JPanel contenedor) {
         setBackground(new Color(253, 247, 130));
@@ -69,13 +70,18 @@ public class PanelRegistrarse extends JPanel {
 
         BotonEntrar = new JButton("Entrar");
         BotonEntrar.setBounds(198, 328, 89, 23);
-        BotonEntrar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.PREGUNTAS));
+        BotonEntrar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.ELEGIRTEMATICA));
         add(BotonEntrar);
 
         // Fondo al final para que quede detrás
-        FondoAzul = new JLabel("");
-        FondoAzul.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/azuloscuronébula.jpg")));
-        FondoAzul.setBounds(0, 148, 506, 213);
-        add(FondoAzul);
+        FondoAzulRegistro = new JLabel("");
+        FondoAzulRegistro.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/azuloscuronébula.jpg")));
+        FondoAzulRegistro.setBounds(0, 148, 506, 213);
+        add(FondoAzulRegistro);
+        
+        fondoAmarilloRegistro = new JLabel("");
+        fondoAmarilloRegistro.setIcon(new ImageIcon(PanelRegistrarse.class.getResource("/resource/background-chills.png")));
+        fondoAmarilloRegistro.setBounds(0, -16, 506, 175);
+        add(fondoAmarilloRegistro);
     }
 }

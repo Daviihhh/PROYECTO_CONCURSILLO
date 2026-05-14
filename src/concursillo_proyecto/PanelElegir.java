@@ -17,6 +17,7 @@ public class PanelElegir extends JPanel {
     public JButton IniciarSesion, btnIniciarCuenta, btnRegistrarCuenta;
 
     public JButton SalirElegir;
+    private JLabel lblNewLabel;
 
 
     public PanelElegir(CardLayout cardLayout, JPanel contenedor) {
@@ -31,14 +32,14 @@ public class PanelElegir extends JPanel {
 
         btnIniciarCuenta = new JButton("Iniciar sesión con tu cuenta");
 
-        btnIniciarCuenta.setBounds(133, 100, 216, 69);
+        btnIniciarCuenta.setBounds(143, 55, 216, 69);
         btnIniciarCuenta.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIARSESION));
         add(btnIniciarCuenta);
       
         // Botón de registrar cuent
 
         btnRegistrarCuenta = new JButton("Registrar nueva cuenta");
-        btnRegistrarCuenta.setBounds(133, 198, 216, 69);
+        btnRegistrarCuenta.setBounds(143, 234, 216, 69);
         btnRegistrarCuenta.addActionListener(e -> cardLayout.show(contenedor, Interfaz.REGISTRARSE));
         add(btnRegistrarCuenta);
                 
@@ -52,6 +53,11 @@ public class PanelElegir extends JPanel {
                 FondoCrearCuenta.setIcon(new ImageIcon(PanelElegir.class.getResource("/resource/azuloscuronébula.jpg")));
                 FondoCrearCuenta.setBounds(0, 177, 506, 184);
                 add(FondoCrearCuenta);
+                
+                lblNewLabel = new JLabel("");
+                lblNewLabel.setIcon(new ImageIcon(PanelElegir.class.getResource("/resource/background-chills.png")));
+                lblNewLabel.setBounds(0, 0, 506, 178);
+                add(lblNewLabel);
         
 
 
