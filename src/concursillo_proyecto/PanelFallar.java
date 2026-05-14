@@ -42,7 +42,7 @@ public class PanelFallar extends JPanel {
 		CuantasAcertadas.setColumns(10);
 		
 		VerRanking = new JButton("Ver Ranking");
-		VerRanking.setBounds(203, 261, 89, 23);
+		VerRanking.setBounds(183, 261, 131, 23);
 		add(VerRanking);
 		VerRanking.addActionListener(e -> cardLayout.show(contenedor, Interfaz.RANKING));
 		

@@ -56,9 +56,16 @@ public class Interfaz extends JFrame {
         panelPreguntas    = new PanelPreguntas(cardLayout, concursillo);
         panelRanking      = new PanelRanking(cardLayout, concursillo);
         panelRegistrarse      = new PanelRegistrarse(cardLayout, concursillo);
+        panelRegistrarse.Contraseña.setEditable(false);
+        panelRegistrarse.NombreUsuario.setEditable(false);
+        panelRegistrarse.DniUsuario.setEditable(false);
         panelDinero       = new PanelDinero(cardLayout, concursillo);
+        panelDinero.textoUsuario.setEditable(false);
+        panelDinero.NombreDelJugador.setEditable(false);
         panelElegir       = new PanelElegir(cardLayout, concursillo);
         panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo);
+        panelIniciarSesion.ContraseñaIniciarSesion.setEditable(false);
+        panelIniciarSesion.NombreIniciarSesion.setEditable(false);
         panelinfo         = new Panelinfo(cardLayout, concursillo);
         panelelegirtematica         = new PanelElegirTematica(cardLayout, concursillo);
         panelFallar         = new PanelFallar(cardLayout, concursillo);
