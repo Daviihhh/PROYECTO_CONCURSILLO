@@ -67,6 +67,8 @@ public class PanelRanking extends JPanel {
         top5.setColumns(10);
         top5.setBounds(93, 272, 219, 20);
         add(top5);
+        
+        actualizarRanking();
 
         salir = new JButton("");
         salir.setBackground(new Color(0, 0, 64));
@@ -110,8 +112,7 @@ public class PanelRanking extends JPanel {
     }
     
     public void actualizarRanking() {
-        GestionMongoDB gestionRanked = new GestionMongoDB();
-        ArrayList<Usuario> rankeds = gestionRanked.getOrdenRanking();
+    	ArrayList<Usuario> rankeds = gestion.getOrdenRanking();
 
         if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre());
         if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre());
