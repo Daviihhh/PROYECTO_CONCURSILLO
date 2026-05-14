@@ -26,9 +26,13 @@ public class PanelDinero extends JPanel {
     public JTextArea textoUsuario;
     public JLabel FondoAzul1;
     public JLabel FondoAzul2;
+    private GestionMongoDB gestion;
+ // en el constructor:
 
-    public PanelDinero(CardLayout cardLayout, JPanel contenedor) {
-        setBackground(new Color(253, 247, 130));
+    public PanelDinero(CardLayout cardLayout, JPanel contenedor, GestionMongoDB gestion) {
+    	this.gestion = gestion;
+    	
+    	setBackground(new Color(253, 247, 130));
         setLayout(null);
         setBounds(0, 0, 506, 361);
 
@@ -133,5 +137,38 @@ public class PanelDinero extends JPanel {
                 FondoAzul1.setIcon(new ImageIcon(getClass().getResource("/resource/azuloscuronébula.jpg")));
                 FondoAzul1.setBounds(0, 0, 506, 37);
                 add(FondoAzul1);
+    }
+    
+    public void actualizarPremio(int numeroPregunta) {
+        // Resetea todos a blanco
+        Premio1.setBackground(Color.WHITE);
+        Premio2.setBackground(Color.WHITE);
+        Premio3.setBackground(Color.WHITE);
+        Premio4.setBackground(Color.WHITE);
+        Premio5.setBackground(Color.WHITE);
+        Premio6.setBackground(Color.WHITE);
+        Premio7.setBackground(Color.WHITE);
+        Premio8.setBackground(Color.WHITE);
+        Premio9.setBackground(Color.WHITE);
+        Premio10.setBackground(Color.WHITE);
+
+        // Resalta el premio actual en verde
+        switch (numeroPregunta) {
+            case 1:  Premio1.setBackground(Color.GREEN); break;
+            case 2:  Premio2.setBackground(Color.GREEN); break;
+            case 3:  Premio3.setBackground(Color.GREEN); break;
+            case 4:  Premio4.setBackground(Color.GREEN); break;
+            case 5:  Premio5.setBackground(Color.GREEN); break;
+            case 6:  Premio6.setBackground(Color.GREEN); break;
+            case 7:  Premio7.setBackground(Color.GREEN); break;
+            case 8:  Premio8.setBackground(Color.GREEN); break;
+            case 9:  Premio9.setBackground(Color.GREEN); break;
+            case 10: Premio10.setBackground(Color.GREEN); break;
+        }
+    }
+    
+    
+    public void actualizarNombre() {
+        NombreDelJugador.setText(gestion.getNombreUsuarioActual());
     }
 }

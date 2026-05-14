@@ -7,7 +7,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
 public class GestionMongoDB {
@@ -17,12 +16,12 @@ public class GestionMongoDB {
 	private MongoCollection<Document> coleccionPreguntas;
 	
 	private static String tema;
+	
+	private int puntuacion = 0;
+	private String dniUsuarioActual = "";
+	private String contrasenaUsuarioActual = "";
 
 	private static ArrayList<Document> preguntas = new ArrayList<>();
-	
-	private GestionMongoDB gestion;
-	private int numeroPregunta = 0;
-	
 	
 	static Scanner sc = new Scanner (System.in);
 	
@@ -43,9 +42,6 @@ public class GestionMongoDB {
 				
 		String uri ="mongodb+srv://silviaaoelectromedicina_db_user:Iws7ME7tVmxBLz5P@cluster0.5bm4pak.mongodb.net/";
     // Conexión
-		boolean salida = false;
-		
-		int dificultad = 0;
 		String tematica = tema;
 		
 		
@@ -147,11 +143,39 @@ public class GestionMongoDB {
     
     private ArrayList<Pregunta> concursillo = new ArrayList<>();
     private int indicePreguntaActual = 0;
+    
+    private String nombreUsuarioActual = "";
+
+    public void setNombreUsuarioActual(String nombre) {
+        nombreUsuarioActual = nombre;
+    }
+
+    public String getNombreUsuarioActual() {
+        return nombreUsuarioActual;
+    }
 
     public void iniciarConcursillo(String tematicaEleg) {
+        resetPuntuacion();
         concursillo = obtenerPreguntaAleatoria(tematicaEleg);
         indicePreguntaActual = 0;
     }
+    
+    public boolean existeDNI(String dni) {
+        ArrayList<Document> docs = new ArrayList<>();
+        database.getCollection("Usuarios").find().into(docs);
+        
+        for (Document doc : docs) {
+            if (doc.getString("dni").equals(dni)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int getNumPreguntaActual() {
+        return indicePreguntaActual + 1;
+    }
+    
 
     public Pregunta getPreguntaActual() {
         if (indicePreguntaActual < concursillo.size()) {
@@ -171,10 +195,51 @@ public class GestionMongoDB {
             mongoClient.close();
         }
     }
+    
+    public boolean iniciarSesion(String nombre, String contrasena) {
+        ArrayList<Document> docs = new ArrayList<>();
+        database.getCollection("Usuarios").find().into(docs);
+        
+        for (Document doc : docs) {
+            if (doc.getString("nombre").equals(nombre) &&
+                doc.getString("contrasena").equals(contrasena)) {
+                return true; // usuario encontrado
+            }
+        }
+        return false; // no encontrado
+    }
 
 	public String getTema() {
 		// TODO Auto-generated method stub
 		return tema;
+	}
+	
+	public void sumarPunto() {
+	    puntuacion++;
+	}
+
+	public int getPuntuacion() {
+	    return puntuacion;
+	}
+
+	public void resetPuntuacion() {
+	    puntuacion = 0;
+	}
+	
+	public void setDniUsuarioActual(String dni) {
+	    dniUsuarioActual = dni;
+	}
+
+	public void setContrasenaUsuarioActual(String contrasena) {
+	    contrasenaUsuarioActual = contrasena;
+	}
+
+	public String getDniUsuarioActual() {
+	    return dniUsuarioActual;
+	}
+
+	public String getContrasenaUsuarioActual() {
+	    return contrasenaUsuarioActual;
 	}
 	
 	// PON esto:

@@ -1,7 +1,8 @@
-
 package concursillo_proyecto;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 //cambi
 
 public class Interfaz extends JFrame {
@@ -15,7 +16,9 @@ public class Interfaz extends JFrame {
     public static final String ELEGIR         = "ELEGIR";
     public static final String INICIARSESION  = "INICIARSESION";
     public static final String INFO           = "INFO";
+    public static final String FALLAR		  = "FALLAR";
     public static final String ELEGIRTEMATICA           = "ELEGIRTEMATICA";
+
 
     private CardLayout cardLayout;
     private JPanel concursillo;
@@ -28,7 +31,11 @@ public class Interfaz extends JFrame {
     public PanelElegir panelElegir;
     public PanelIniciarSesion panelIniciarSesion;
     public Panelinfo panelinfo;
+    public PanelFallar panelFallar;
     public PanelElegirTematica panelelegirtematica;
+    
+    public GestionMongoDB gestion = new GestionMongoDB();
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -52,14 +59,16 @@ public class Interfaz extends JFrame {
 
         
         panelInicio = new PanelInicio(cardLayout, concursillo);
-        panelPreguntas    = new PanelPreguntas(cardLayout, concursillo);
-        panelRanking      = new PanelRanking(cardLayout, concursillo);
-        panelRegistrarse      = new PanelRegistrarse(cardLayout, concursillo);
-        panelDinero       = new PanelDinero(cardLayout, concursillo);
-        panelElegir       = new PanelElegir(cardLayout, concursillo);
-        panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo);
-        panelinfo         = new Panelinfo(cardLayout, concursillo);
-        panelelegirtematica         = new PanelElegirTematica(cardLayout, concursillo);
+        panelRanking = new PanelRanking(cardLayout, concursillo, gestion);
+        panelDinero = new PanelDinero(cardLayout, concursillo, gestion);
+        panelElegir = new PanelElegir(cardLayout, concursillo);
+        panelinfo = new Panelinfo(cardLayout, concursillo);
+        panelFallar = new PanelFallar(cardLayout, concursillo, panelRanking);
+        panelPreguntas = new PanelPreguntas(cardLayout, concursillo, panelDinero, gestion, panelFallar);
+        panelRegistrarse = new PanelRegistrarse(cardLayout, concursillo, gestion, panelPreguntas, panelDinero, panelRanking);
+        panelIniciarSesion = new PanelIniciarSesion(cardLayout, concursillo, gestion, panelPreguntas, panelDinero, panelRanking);
+        panelelegirtematica = new PanelElegirTematica(cardLayout, concursillo, gestion, panelPreguntas);
+
 
         concursillo.add(panelInicio,         INICIO);
         concursillo.add(panelPreguntas,      PREGUNTAS);
@@ -69,11 +78,15 @@ public class Interfaz extends JFrame {
         concursillo.add(panelElegir,         ELEGIR);
         concursillo.add(panelIniciarSesion,  INICIARSESION);
         concursillo.add(panelinfo,           INFO);
+        concursillo.add(panelFallar,           FALLAR);      
         concursillo.add(panelelegirtematica,           ELEGIRTEMATICA);
-
-        setContentPane(concursillo);
-        cardLayout.show(concursillo, INICIO);
         
-        panelRanking.actualizarRanking();
+        setContentPane(concursillo);
+        cardLayout.show(concursillo, 		INICIO);
+        
+        panelPreguntas.actualizarNombre();
+        panelDinero.actualizarNombre();
+        panelRanking.actualizarNombre();
+
     }
 }

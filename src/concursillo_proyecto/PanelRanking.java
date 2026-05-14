@@ -21,9 +21,12 @@ public class PanelRanking extends JPanel {
     public JLabel lblNewLabel;
     public JLabel lblNewLabel_2;
     public JLabel lblNewLabel_6;
+    private GestionMongoDB gestion;
 
-    public PanelRanking(CardLayout cardLayout, JPanel contenedor) {
-        setBackground(new Color(253, 247, 130));
+    public PanelRanking(CardLayout cardLayout, JPanel contenedor, GestionMongoDB gestion) {
+        this.gestion = gestion;
+    	
+    	setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
 
@@ -92,17 +95,6 @@ public class PanelRanking extends JPanel {
         lblNewLabel_6.setBounds(339, 86, 140, 235);
         add(lblNewLabel_6);
 
-        /*
-        //Creo instancia
-        GestionMongoDB gestionRanked = new GestionMongoDB();
-        ArrayList<Usuario> rankeds = gestionRanked.getOrdenRanking();s
-
-        if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre());
-        if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre());
-        if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre());
-        if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre());
-        if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre());   --> desactualizado. No recarga al abrir y si no hay
-         																		 datos, da error conforme está escrito*/
     }
     
     public void actualizarRanking() {
@@ -114,5 +106,9 @@ public class PanelRanking extends JPanel {
         if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre());
         if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre());
         if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre());
+    }
+    
+    public void actualizarNombre() {
+        NombreUser.setText(gestion.getNombreUsuarioActual());
     }
 }

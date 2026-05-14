@@ -1,3 +1,4 @@
+
 package concursillo_proyecto;
 
 
@@ -6,17 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.awt.event.ActionEvent;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoDatabase;
-
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.FindIterable;
-import org.bson.Document;
-
 import java.awt.event.ActionEvent;
 
 
@@ -40,6 +33,8 @@ public class PanelPreguntas extends JPanel {
     public ArrayList<Pregunta> preguntas;
     public String tema;
     private GestionMongoDB gestion;
+    private JPanel contenedor;
+    private CardLayout cardLayout;
 
     public JButton VerInfo;
     public JLabel lblNewLabel;
@@ -53,24 +48,26 @@ public class PanelPreguntas extends JPanel {
     public JTextField NombrePreguntas;
     public JTextField NivelPreguntas;
     
+    private PanelDinero panelDinero;
+    
+    private PanelFallar panelFallar;
+    
 
-    public PanelPreguntas(CardLayout cardLayout, JPanel contenedor) {
+    public PanelPreguntas(CardLayout cardLayout, JPanel contenedor, PanelDinero panelDinero, GestionMongoDB gestion, PanelFallar panelFallar) {
         setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
         
-        gestion = new GestionMongoDB();
-        gestion.guardarTema("Juegos");
-        gestion.iniciarConcursillo(gestion.getTema());
+        this.panelFallar = panelFallar;
+        this.cardLayout = cardLayout;
+        this.contenedor = contenedor;
+        this.panelDinero = panelDinero;
+        this.gestion = gestion;      
 
         Opcion_A = new JButton("");
         Opcion_A.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		comprobarRespuesta(Opcion_A);
-
-       
-        	
-
         	}
         });
         
@@ -194,15 +191,15 @@ public class PanelPreguntas extends JPanel {
         lblNewLabel.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/azuloscuronébula.jpg")));
         lblNewLabel.setBounds(0, 0, 506, 41);
         add(lblNewLabel);
-        
-
-
-        cargarPregunta();
+       
         fondo_chill = new JLabel("");
         fondo_chill.setIcon(new ImageIcon(PanelPreguntas.class.getResource("/resource/background-chills.png")));
         fondo_chill.setBounds(0, 39, 506, 322);
         add(fondo_chill);
+        
     }
+    
+    
     
     
     private void comodinEscudo(JButton boton) {
@@ -221,59 +218,59 @@ public class PanelPreguntas extends JPanel {
     }
 	
 	private void comodinIncorrecta() {
-		boolean seguir = true;
-		do {
-			int random = (int)(Math.random() * 3);
-			if(!preguntaActual.getRespuestas().get(random).equals(preguntaActual.getCorrecta())) {
-				seguir = false;
-				if(Opcion_A.getText().equals(preguntaActual.getRespuestas().get(random))) {
-					Opcion_A.setText("");
-				}else if(Opcion_B.getText().equals(preguntaActual.getRespuestas().get(random))) {
-					Opcion_B.setText("");
-				}else if(Opcion_C.getText().equals(preguntaActual.getRespuestas().get(random))) {
-					Opcion_C.setText("");
-				}else if(Opcion_D.getText().equals(preguntaActual.getRespuestas().get(random))) {
-					Opcion_D.setText("");
-				}
-			}
-		}while(seguir);
-	}
-	
-	int segundos = 0;
-	private void comodinLlamada() {
-		System.out.println("COMIENZA LA LLAMADA");
-		Timer timer = new Timer();
-        
-        TimerTask tarea = new TimerTask() {
-            @Override
-            public void run() {
-                segundos++; // Incrementamos el contador
-                System.out.println("Segundos transcurridos: " + segundos);
-                if (segundos >= 60) {
-                    System.out.println("¡Tiempo cumplido! Deteniendo...");
-                    timer.cancel(); // Esto apaga el timer por completo
-                }
-            }
-        };
-        
-        // 1000 --> ms (1 segundo = 1000 ms) | 0 --> retraso en iniciar la acción
-        timer.scheduleAtFixedRate(tarea, 0, 1000);
-	}
-	
-	// PON esto:
-	private void cargarPregunta() {
-	    preguntaActual = gestion.getPreguntaActual();
-	    if (preguntaActual == null) {
-	        JOptionPane.showMessageDialog(this, "¡Has terminado el concursillo!");
+		ArrayList<JButton> candidatos = new ArrayList<>();
+		
+		if (Opcion_A.isVisible() && !Opcion_A.getText().equals(preguntaActual.getCorrecta())) candidatos.add(Opcion_A);
+		if (Opcion_B.isVisible() && !Opcion_B.getText().equals(preguntaActual.getCorrecta())) candidatos.add(Opcion_B);
+	    if (Opcion_C.isVisible() && !Opcion_C.getText().equals(preguntaActual.getCorrecta())) candidatos.add(Opcion_C);
+        if (Opcion_D.isVisible() && !Opcion_D.getText().equals(preguntaActual.getCorrecta())) candidatos.add(Opcion_D);
+		
+		if (candidatos.isEmpty()) {
+	        System.out.println("No hay opciones incorrectas visibles para eliminar");
 	        return;
 	    }
+
+	    // Elige uno aleatorio de los candidatos válidos
+	    int random = (int)(Math.random() * candidatos.size());
+	    candidatos.get(random).setVisible(false);
+	}
+	
+	
+	private void cargarPregunta() {
+		visiblesOpciones();
+	    preguntaActual = gestion.getPreguntaActual();
+	    if (preguntaActual == null) {
+	        Usuario usuario = new Usuario(
+	            gestion.getNombreUsuarioActual(),
+	            gestion.getDniUsuarioActual(),
+	            gestion.getContrasenaUsuarioActual(),
+	            gestion.getPuntuacion()
+	        );
+	        gestion.guardarUsuario(usuario);
+	        panelFallar.mostrarResultado(true, gestion.getPuntuacion());
+	        cardLayout.show(contenedor, Interfaz.FALLAR);
+	        return;
+	    }
+	    
+	    ArrayList<String> respuestas = new ArrayList<>(preguntaActual.getRespuestas());
+	    Collections.shuffle(respuestas);
+
 	    Pregunta.setText(preguntaActual.getEnunciado());
-	    Opcion_A.setText(preguntaActual.getRespuestas().get(0));
-	    Opcion_B.setText(preguntaActual.getRespuestas().get(1));
-	    Opcion_C.setText(preguntaActual.getRespuestas().get(2));
-	    Opcion_D.setText(preguntaActual.getRespuestas().get(3));
+	    Opcion_A.setText(respuestas.get(0));
+	    Opcion_B.setText(respuestas.get(1));
+	    Opcion_C.setText(respuestas.get(2));
+	    Opcion_D.setText(respuestas.get(3));
+	    
+	    panelDinero.actualizarPremio(gestion.getNumPreguntaActual());
+	    NivelPreguntas.setText("Pregunta " + gestion.getNumPreguntaActual());
+	}
+	
+	public void actualizarNombre() {
+	    NombrePreguntas.setText(gestion.getNombreUsuarioActual());
 	}
 
+	
+	
 	
 	public void Concursillo() {
 		
@@ -297,18 +294,76 @@ public class PanelPreguntas extends JPanel {
 	    if (texto.equals(preguntaActual.getCorrecta())) {
 	        System.out.println("Correcto");
 	        gestion.siguientePregunta();
+	        gestion.sumarPunto();
 	        cargarPregunta();
-	        cajasRespuestaVisibles();
 	    } else {
-	        System.out.println("Incorrecto");
+	    	panelFallar.mostrarResultado(false, gestion.getPuntuacion());
+	        cardLayout.show(contenedor, Interfaz.FALLAR); // añade esta línea
 	    }
 	}
 	
-	private void cajasRespuestaVisibles() {
-		Opcion_A.setVisible(true);
-        Opcion_B.setVisible(true);
-        Opcion_C.setVisible(true);
-        Opcion_D.setVisible(true);
-	}
+	
+	int segundos = 0;
+	private Timer timerLlamada = null;
 
+	private void comodinLlamada() {
+	    if (timerLlamada != null) {
+	        timerLlamada.cancel();
+	    }
+
+	    segundos = 0;
+	    timerLlamada = new Timer();
+
+	    // Crea el diálogo
+	    JDialog dialog = new JDialog();
+	    dialog.setTitle("Llamada");
+	    dialog.setSize(300, 150);
+	    dialog.setLayout(new BorderLayout());
+	    dialog.setLocationRelativeTo(this);
+	    dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); // no se puede cerrar con la X
+
+	    JLabel lblSegundos = new JLabel("Segundos restantes: 60", SwingConstants.CENTER);
+	    JButton btnCerrar = new JButton("Colgar");
+	    btnCerrar.setEnabled(false); // desactivado hasta que acaben los 60 segundos
+
+	    dialog.add(lblSegundos, BorderLayout.CENTER);
+	    dialog.add(btnCerrar, BorderLayout.SOUTH);
+
+	    btnCerrar.addActionListener(e -> dialog.dispose());
+
+	    TimerTask tarea = new TimerTask() {
+	        @Override
+	        public void run() {
+	            segundos++;
+	            int restantes = 60 - segundos;
+	            SwingUtilities.invokeLater(() -> {
+	                lblSegundos.setText("Segundos restantes: " + restantes);
+	            });
+	            if (segundos >= 60) {
+	                SwingUtilities.invokeLater(() -> {
+	                    btnCerrar.setEnabled(true); // activa el botón al acabar
+	                    lblSegundos.setText("¡Tiempo cumplido!");
+	                });
+	                timerLlamada.cancel();
+	                timerLlamada = null;
+	            }
+	        }
+	    };
+
+	    timerLlamada.scheduleAtFixedRate(tarea, 0, 1000);
+	    dialog.setVisible(true);
+	}
+	
+	public void iniciar() {
+	    cargarPregunta();
+	}
+	
+	private void visiblesOpciones() {
+		Opcion_A.setVisible(true);
+		Opcion_B.setVisible(true);
+		Opcion_C.setVisible(true);
+		Opcion_D.setVisible(true);
+	}
 }
+
+

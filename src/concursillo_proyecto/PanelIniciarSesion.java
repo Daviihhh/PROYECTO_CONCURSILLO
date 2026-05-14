@@ -24,9 +24,19 @@ public class PanelIniciarSesion extends JPanel {
     public JLabel lblNewLabel_1;
     public JButton Salir3;
     public JButton btnIniciarSesion;
+    private GestionMongoDB gestion;
+    private PanelPreguntas panelPreguntas;
+    private PanelDinero panelDinero;
+    private PanelRanking panelRanking;
 
-    public PanelIniciarSesion(CardLayout cardLayout, JPanel concursillo) {
-        setBackground(new Color(253, 247, 130));
+    public PanelIniciarSesion(CardLayout cardLayout, JPanel concursillo, GestionMongoDB gestion,
+    		PanelPreguntas panelPreguntas, PanelDinero panelDinero, PanelRanking panelRanking) {
+        this.gestion = gestion;
+        this.panelPreguntas = panelPreguntas;
+        this.panelDinero = panelDinero;
+        this.panelRanking = panelRanking;
+    	
+    	setBackground(new Color(253, 247, 130));
         setBounds(0, 0, 506, 361);
         setLayout(null);
 
@@ -66,7 +76,27 @@ public class PanelIniciarSesion extends JPanel {
         
         btnIniciarSesion = new JButton("Iniciar sesión");
         btnIniciarSesion.setBounds(191, 185, 117, 41);
-        btnIniciarSesion.addActionListener(e -> cardLayout.show(concursillo, Interfaz.PREGUNTAS));
+     // PON esto:
+        btnIniciarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nombre = NombreRellenar.getText();
+                String contrasena = ContraseñaRellenar.getText();
+                
+                GestionMongoDB gestion = new GestionMongoDB();
+                
+                if (gestion.iniciarSesion(nombre, contrasena)) {
+                    cardLayout.show(concursillo, Interfaz.PREGUNTAS);
+                    gestion.setNombreUsuarioActual(nombre);
+                    panelPreguntas.actualizarNombre();
+                    panelDinero.actualizarNombre();
+                    panelRanking.actualizarNombre();
+                } else {
+                    /*JOptionPane.showMessageDialog(null, 
+                        "Nombre o contraseña incorrectos.",
+                        "Error", JOptionPane.ERROR_MESSAGE);*/
+                }
+            }
+        });
         add(Salir3);
         
         add(btnIniciarSesion);

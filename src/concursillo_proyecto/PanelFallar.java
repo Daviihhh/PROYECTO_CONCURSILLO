@@ -18,11 +18,9 @@ public class PanelFallar extends JPanel {
 	public JButton VerRanking;
 	public JButton SalirFallar;
 	public JLabel lblNewLabel;
+	public PanelFallar panelFallar;
 
-	/**
-	 * Create the panel.
-	 */
-	public PanelFallar(CardLayout cardLayout, JPanel contenedor) {
+	public PanelFallar(CardLayout cardLayout, JPanel contenedor, PanelRanking panelRanking) {
 		setBackground(new Color(253, 247, 130));
 		setLayout(null);
 		
@@ -56,6 +54,14 @@ public class PanelFallar extends JPanel {
 		add(lblNewLabel);
 		SalirFallar.addActionListener(e -> cardLayout.show(contenedor, Interfaz.INICIO));
 		
-
+	}
+	
+	public void mostrarResultado(boolean haGanado, int puntuacion) {
+	    if (haGanado) {
+	        FallarOGanar.setText("¡HAS GANADO!");
+	    } else {
+	        FallarOGanar.setText("¡HAS PERDIDO!");
+	    }
+	    CuantasAcertadas.setText("Has acertado " + puntuacion + " de 10 preguntas");
 	}
 }
