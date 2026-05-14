@@ -20,6 +20,8 @@ public class PanelInicio extends JPanel {
     private PanelRanking panelRanking;
 
 
+
+
     public PanelInicio(CardLayout cardLayout, JPanel contenedor, PanelRanking panelRanking) {
     	this.panelRanking = panelRanking;
     	

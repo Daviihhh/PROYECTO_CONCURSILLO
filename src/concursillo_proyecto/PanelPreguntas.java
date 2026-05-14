@@ -248,7 +248,8 @@ public class PanelPreguntas extends JPanel {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent e) {
-                SonidoManager.reproducirMusica("/resource/malenia_lofi.wav");
+              
+                SonidoManager.reproducirMusicaSiNoSuena("/resource/malenia_lofi.wav");
             }
 
             @Override
@@ -410,6 +411,7 @@ public class PanelPreguntas extends JPanel {
     }
 
     public void iniciar() {
+    	SonidoManager.reproducirMusica("/resource/malenia_lofi.wav");
         cargarPregunta();
     }
 }

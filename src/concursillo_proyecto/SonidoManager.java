@@ -43,4 +43,10 @@ public class SonidoManager {
             e.printStackTrace();
         }
     }
+    
+    public static void reproducirMusicaSiNoSuena(String ruta) {
+        if (musicaFondo == null || !musicaFondo.isRunning()) {
+            reproducirMusica(ruta);
+        }
+    }
 }

@@ -63,9 +63,8 @@ public class Interfaz extends JFrame {
         concursillo = new JPanel(cardLayout);
 
 
-        
-        panelInicio = new PanelInicio(cardLayout, concursillo, panelRanking);
         panelRanking = new PanelRanking(cardLayout, concursillo, gestion);
+        panelInicio = new PanelInicio(cardLayout, concursillo, panelRanking);
         panelDinero = new PanelDinero(cardLayout, concursillo, gestion);
         panelElegir = new PanelElegir(cardLayout, concursillo);
         panelinfo = new Panelinfo(cardLayout, concursillo);
