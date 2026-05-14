@@ -8,11 +8,12 @@ public class PanelRegistrarse extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public JTextField IntroducirNombre, CuadrotextoApellidos, CuadrotextoDNI;
+    public JTextField IntroducirNombre, CuadrotextoApellidos;
     public JFormattedTextField CuadrotextoNombre;
     public JTextPane NombreUsuario, DniUsuario, Contraseña;
     public JLabel ImagenUser, FondoAzulRegistro;
     public JButton Salir2, BotonEntrar;
+    public JPasswordField CuadrotextoDNI;
     private JLabel fondoAmarilloRegistro;
 
     public PanelRegistrarse(CardLayout cardLayout, JPanel contenedor) {
@@ -37,9 +38,10 @@ public class PanelRegistrarse extends JPanel {
         CuadrotextoApellidos.setColumns(10);
         add(CuadrotextoApellidos);
 
-        CuadrotextoDNI = new JTextField();
+        CuadrotextoDNI = new JPasswordField();
         CuadrotextoDNI.setColumns(10);
         CuadrotextoDNI.setBounds(251, 292, 96, 20);
+        CuadrotextoDNI.setEchoChar('*');
         add(CuadrotextoDNI);
 
         NombreUsuario = new JTextPane();

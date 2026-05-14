@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class PanelIniciarSesion extends JPanel {
 
@@ -20,7 +21,7 @@ public class PanelIniciarSesion extends JPanel {
     public JTextField NombreIniciarSesion;
     public JTextField ContraseñaIniciarSesion;
     public JTextField NombreRellenar;
-    public JTextField ContraseñaRellenar;
+    public JPasswordField ContraseñaRellenar;
     public JLabel fondoInicioSesionAzul;
     public JButton Salir3;
     public JButton btnIniciarSesion;
@@ -53,9 +54,10 @@ public class PanelIniciarSesion extends JPanel {
         NombreRellenar.setColumns(10);
         add(NombreRellenar);
 
-        ContraseñaRellenar = new JTextField();
+        ContraseñaRellenar = new JPasswordField();
         ContraseñaRellenar.setBounds(272, 296, 86, 20);
         ContraseñaRellenar.setColumns(10);
+        ContraseñaRellenar.setEchoChar('*');
         add(ContraseñaRellenar);
 
         
