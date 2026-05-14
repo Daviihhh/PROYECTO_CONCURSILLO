@@ -242,60 +242,100 @@ public class GestionMongoDB {
 	    return contrasenaUsuarioActual;
 	}
 	
-	// PON esto:
 	public void guardarUsuario(Usuario usuario) {
+
 	    try {
-	        MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
-	        
-	        Document doc = new Document()
-	            .append("nombre", usuario.getNombre())
-	            .append("dni", usuario.getDNI())
-	            .append("contrasena", usuario.getPassword())
-	            .append("puntuacion", usuario.getPuntuacion());
-	        
-	        coleccionUsuarios.insertOne(doc);
-	        System.out.println("Usuario guardado: " + usuario.getNombre());
-	        
-	    } catch (Exception e) {
+
+	        MongoCollection<Document> coleccionUsuarios =
+	            database.getCollection("Usuarios");
+
+	        // Buscar usuario por DNI
+	        Document existente = coleccionUsuarios.find(
+	            new Document("dni", usuario.getDNI())
+	        ).first();
+
+	        // SI NO EXISTE, INSERTAR
+	        if(existente == null) {
+
+	            Document doc = new Document()
+	                .append("nombre", usuario.getNombre())
+	                .append("dni", usuario.getDNI())
+	                .append("contrasena", usuario.getPassword())
+	                .append("puntuacion", usuario.getPuntuacion());
+
+	            coleccionUsuarios.insertOne(doc);
+
+	            System.out.println("Usuario creado");
+
+	        } else {
+
+	            // si existe, comparar puntuacion
+	            int puntuacionActual =
+	                existente.getInteger("puntuacion");
+
+	            // Solo actualizar si mejora
+	            if(usuario.getPuntuacion() > puntuacionActual) {
+
+	                coleccionUsuarios.updateOne(
+	                    new Document("dni", usuario.getDNI()),
+	                    new Document("$set",
+	                        new Document("puntuacion",
+	                            usuario.getPuntuacion()
+	                        )
+	                    )
+	                );
+
+	                System.out.println("Nueva mejor puntuacion");
+
+	            } else {
+
+	                System.out.println("La puntuacion no mejora");
+	            }
+	        }
+
+	    } catch(Exception e) {
+
 	        e.printStackTrace();
 	    }
 	}
 
 	
-	public ArrayList<Usuario> getOrdenRanking() { //o lo hago static o creo una 
-		MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
-		
-		//Pasar de MongoCollection a ArrayList
-		ArrayList<Document> lista = new ArrayList<>();
-		coleccionUsuarios.find().into(lista);
-		ArrayList<Usuario> usuarios = new ArrayList<>();
-		ArrayList<Usuario> rankeds = new ArrayList<>();
-		
-		for (Document doc : lista) {
-		    Usuario u = new Usuario(
-		        doc.getString("nombre"),
-		        doc.getString("dni"),
-		        doc.getString("contrasena"),
-		        doc.getInteger("puntuacion")
-		    );
-		    usuarios.add(u);
-		}
-		
-		int min = -1;
-		int puntuacion = 0; 
-		
-		for(int i = 0; i < 5; i++) {
-			for(Usuario usuario : usuarios) {
-				puntuacion = usuario.getPuntuacion();
-				if(puntuacion > min && !rankeds.contains(usuario)) {
-					min = puntuacion;
-					rankeds.add(usuario);
-				}
-			}
-			min = -1;
-			
-		}
-		return rankeds;
+	public ArrayList<Usuario> getOrdenRanking() {
+
+	    MongoCollection<Document> coleccionUsuarios = database.getCollection("Usuarios");
+
+	    ArrayList<Document> lista = new ArrayList<>();
+	    coleccionUsuarios.find().into(lista);
+
+	    ArrayList<Usuario> usuarios = new ArrayList<>();
+
+	    // Pasar documentos a usuarios
+	    for (Document doc : lista) {
+
+	        Usuario u = new Usuario(
+	            doc.getString("nombre"),
+	            doc.getString("dni"),
+	            doc.getString("contrasena"),
+	            doc.getInteger("puntuacion")
+	        );
+
+	        usuarios.add(u);
+	    }
+
+	    // Ordenar de mayor a menor puntuacion
+	    usuarios.sort((u1, u2) ->
+	        Integer.compare(u2.getPuntuacion(), u1.getPuntuacion())
+	    );
+
+	    // Crear lista top 5
+	    ArrayList<Usuario> rankeds = new ArrayList<>();
+
+	    for(int i = 0; i < 5 && i < usuarios.size(); i++) {
+
+	        rankeds.add(usuarios.get(i));
+	    }
+
+	    return rankeds;
 	}
 	
 }

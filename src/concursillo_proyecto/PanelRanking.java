@@ -1,5 +1,4 @@
 package concursillo_proyecto;
-//cambi
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -114,11 +113,11 @@ public class PanelRanking extends JPanel {
     public void actualizarRanking() {
     	ArrayList<Usuario> rankeds = gestion.getOrdenRanking();
 
-        if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre());
-        if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre());
-        if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre());
-        if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre());
-        if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre());
+        if (rankeds.size() >= 1) top1.setText(rankeds.get(0).getNombre() + " - " + rankeds.get(0).getPuntuacion() + " puntos");
+        if (rankeds.size() >= 2) top2.setText(rankeds.get(1).getNombre() + " - " + rankeds.get(1).getPuntuacion() + " puntos");
+        if (rankeds.size() >= 3) top3.setText(rankeds.get(2).getNombre() + " - " + rankeds.get(2).getPuntuacion() + " puntos");
+        if (rankeds.size() >= 4) top4.setText(rankeds.get(3).getNombre() + " - " + rankeds.get(3).getPuntuacion() + " puntos");
+        if (rankeds.size() >= 5) top5.setText(rankeds.get(4).getNombre() + " - " + rankeds.get(4).getPuntuacion() + " puntos");
     }
     
     public void actualizarNombre() {
